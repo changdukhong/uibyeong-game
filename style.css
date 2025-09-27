@@ -108,14 +108,12 @@ html, body {
 }
 
 #game-area {
-  position: relative;
   width: 100%;
-  aspect-ratio: 5 / 1; /* ✅ 2000:400 비율 유지 */
+  aspect-ratio: 5 / 1; /* 2000:400 비율 유지 */
   background-image: url('images/battlefield.png');
-  background-size: cover;       /* ✅ 자동 리샘플링 */
-  background-repeat: no-repeat; /* ✅ 반복 제거 */
-  background-position: center;  /* ✅ 중앙 정렬 */
-  image-rendering: auto;        /* ✅ 부드러운 축소 */
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
   overflow: hidden;
 }
 
@@ -178,5 +176,6 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 

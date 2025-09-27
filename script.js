@@ -159,7 +159,7 @@ function endGame(message) {
   uibyeong.style.left = `95%`;
 
   hideSupporters();
-  alert(message);
+  alert(message); // ✅ 깔끔한 메시지만 출력
 
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
@@ -198,6 +198,7 @@ function adjustCharacterBottom() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

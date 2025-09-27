@@ -83,8 +83,8 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  // 의병장 속도는 에너지에 따라 실시간 계산
-  uibyeongSpeed = baseSpeed * (0.5 + energy / 100);
+  // 에너지 기반 속도 (0~0.3)
+  uibyeongSpeed = baseSpeed * (energy / 100);
 
   samuraiPosition -= samuraiSpeed;
   uibyeongPosition -= uibyeongSpeed;
@@ -136,3 +136,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

@@ -52,13 +52,16 @@ function startGame() {
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
 
+let clickCount = 0;
+
 function increaseEnergy() {
   if (gameOver) return;
   energy = Math.min(energy + 5, 100);
-  score += 10;
-  scoreDisplay.textContent = `점수: ${score}`;
+  clickCount += 1;
+  scoreDisplay.textContent = `클릭 수: ${clickCount}`;
   updateGauge();
 }
+
 
 function decayEnergy() {
   if (gameOver) return;
@@ -138,4 +141,5 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 

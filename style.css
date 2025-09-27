@@ -24,6 +24,43 @@ html, body {
   animation: bounce 0.4s ease;
 }
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: #fff;
+  color: #222;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 80%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.popup-content button {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  font-size: 1em;
+  background: #f90;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
 /* ✅ supporter 위치 및 스타일 */
 .supporter {
   position: absolute;
@@ -132,3 +169,4 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+

@@ -39,8 +39,6 @@ function startGame() {
 
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
-  // document.body.addEventListener('click', increaseEnergy); // ✅ 화면 전체 클릭
-  // clickBtn.style.display = 'none'; // 버튼 숨김 또는 안내용으로 유지
 
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
@@ -131,7 +129,6 @@ function endGame(message) {
   clearInterval(moveInterval);
   clearInterval(energyDecayInterval);
   clickBtn.removeEventListener('click', increaseEnergy);
-  // document.body.removeEventListener('click', increaseEnergy); // ✅ 클릭 해제
 
   gameOver = true;
 
@@ -145,6 +142,7 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

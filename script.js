@@ -3,11 +3,11 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 80;
+let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
 const baseSpeed = 0.2;
-let samuraiSpeed = baseSpeed * 1.2; // 현실적인 도망 속도
+let samuraiSpeed = baseSpeed * 1.1;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -28,9 +28,9 @@ function startGame() {
   energy = 0;
   gameOver = false;
 
-  samuraiPosition = 80;
+  samuraiPosition = 75;
   uibyeongPosition = 95;
-  samuraiSpeed = baseSpeed * 1.2;
+  samuraiSpeed = baseSpeed * 1.1;
   uibyeongSpeed = baseSpeed;
 
   scoreDisplay.textContent = `점수: ${score}`;
@@ -82,8 +82,8 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  const minRatio = 0.5;
   const energyRatio = energy / 100;
+  const minRatio = 0.6;
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
 
   samuraiPosition -= samuraiSpeed;
@@ -101,13 +101,11 @@ function moveCharacters() {
 function checkCollision() {
   const samuraiRect = samurai.getBoundingClientRect();
 
-  // ✅ 도망 여부 먼저 확인
   if (!gameOver && samuraiRect.left <= 0) {
     endGame('💨 사무라이가 도망쳤습니다!');
     return;
   }
 
-  // 이후에 체포 여부 확인
   const uibyeongRect = uibyeong.getBoundingClientRect();
   const samuraiCenter = samuraiRect.left + samuraiRect.width / 2;
   const uibyeongCenter = uibyeongRect.left + uibyeongRect.width / 2;
@@ -125,14 +123,12 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
-  // 정지 처리
   samuraiSpeed = 0;
   uibyeongSpeed = 0;
 
   alert(message);
 
-  // 위치 초기화
-  samuraiPosition = 80;
+  samuraiPosition = 75;
   uibyeongPosition = 95;
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;

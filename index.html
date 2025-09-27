@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>의병장 추격 게임</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="hud">
@@ -18,16 +17,10 @@
   <div id="game-area">
     <div id="samurai"></div>
     <div id="uibyeong"></div>
-  <div class="supporter" style="left: 10%; background-image: url('images/supporter1.png');"></div>
-  <div class="supporter" style="left: 30%; background-image: url('images/supporter2.png');"></div>
-  <div class="supporter" style="left: 50%; background-image: url('images/supporter3.png');"></div>
-  <div class="supporter" style="left: 70%; background-image: url('images/supporter4.png');"></div>
-
   </div>
 
-  <button onclick="increaseSpeed()">응원 클릭!</button>
-  <audio id="cheer-sound" src="cheer.mp3"></audio>
+  <button id="restartBtn" onclick="startGame()">다시 시작</button>
+
   <script src="script.js"></script>
 </body>
-
 </html>

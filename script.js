@@ -1,11 +1,15 @@
 let score = 0;
 let timeLeft = 30;
 let energy = 0;
+let gameOver = false;
+
+let samuraiPosition = 80;
+let uibyeongPosition = 95;
+const samuraiSpeed = 0.3;
+let uibyeongSpeed = 0.3;
+
 let timerInterval;
 let moveInterval;
-let collisionInterval;
-let gameOver = false;
-let uibyeongPosition = 95;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -16,39 +20,29 @@ const restartBtn = document.getElementById('restartBtn');
 const clickBtn = document.getElementById('clickBtn');
 
 function startGame() {
-  // 초기화
   score = 0;
   timeLeft = 30;
   energy = 0;
   gameOver = false;
+  samuraiPosition = 80;
   uibyeongPosition = 95;
+  uibyeongSpeed = 0.3;
 
-  // UI 초기화
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   gaugeFill.style.width = '0%';
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
 
-  // 의병장 위치 초기화
+  samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
 
-  // 사무라이 위치 및 애니메이션 재시작
-  samurai.style.animation = 'none';
-  samurai.style.left = '80%';
-  requestAnimationFrame(() => {
-    samurai.style.animation = 'runLeft 30s linear forwards';
-  });
-
-  // 이벤트 등록
   clickBtn.addEventListener('click', increaseEnergy);
   restartBtn.removeEventListener('click', startGame);
   restartBtn.addEventListener('click', startGame);
 
-  // 반복 동작 시작
   timerInterval = setInterval(updateTimer, 1000);
-  moveInterval = setInterval(moveUibyeong, 100);
-  collisionInterval = setInterval(checkCollision, 100);
+  moveInterval = setInterval(moveCharacters, 100);
 }
 
 function increaseEnergy() {
@@ -57,6 +51,7 @@ function increaseEnergy() {
   gaugeFill.style.width = `${energy}%`;
   score += 10;
   scoreDisplay.textContent = `점수: ${score}`;
+  uibyeongSpeed += 0.05;
 }
 
 function updateTimer() {
@@ -67,11 +62,19 @@ function updateTimer() {
   }
 }
 
-function moveUibyeong() {
+function moveCharacters() {
   if (gameOver) return;
-  uibyeongPosition -= energy * 0.05;
+
+  samuraiPosition -= samuraiSpeed;
+  uibyeongPosition -= uibyeongSpeed;
+
+  samuraiPosition = Math.max(samuraiPosition, 0);
   uibyeongPosition = Math.max(uibyeongPosition, 0);
+
+  samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
+
+  checkCollision();
 }
 
 function checkCollision() {
@@ -89,7 +92,6 @@ function checkCollision() {
 function endGame(message) {
   clearInterval(timerInterval);
   clearInterval(moveInterval);
-  clearInterval(collisionInterval);
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
@@ -98,15 +100,4 @@ function endGame(message) {
   clickBtn.style.display = 'none';
 }
 
-function resetSamurai() {
-  samurai.style.animation = 'none';
-  samurai.style.left = '80%';
-
-  requestAnimationFrame(() => {
-    samurai.style.animation = 'runLeft 30s linear forwards';
-  });
-}
-
-// 페이지 로드 시 게임 시작
 document.addEventListener('DOMContentLoaded', startGame);
-

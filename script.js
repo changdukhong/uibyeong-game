@@ -3,11 +3,11 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 90;
+let samuraiPosition = 80;
 let uibyeongPosition = 95;
 
 const baseSpeed = 0.2;
-let samuraiSpeed = baseSpeed * 1.5; // 현실적인 도망 속도
+let samuraiSpeed = baseSpeed * 1.2; // 현실적인 도망 속도
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -28,9 +28,9 @@ function startGame() {
   energy = 0;
   gameOver = false;
 
-  samuraiPosition = 90;
+  samuraiPosition = 80;
   uibyeongPosition = 95;
-  samuraiSpeed = baseSpeed * 1.5;
+  samuraiSpeed = baseSpeed * 1.2;
   uibyeongSpeed = baseSpeed;
 
   scoreDisplay.textContent = `점수: ${score}`;
@@ -82,8 +82,10 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  // 의병장 속도는 에너지에 따라 실시간 계산 (0~baseSpeed)
-  uibyeongSpeed = baseSpeed * (energy / 100);
+  // 의병장 속도: 최소 50% 유지 + 에너지 반영
+  const minRatio = 0.5;
+  const energyRatio = energy / 100;
+  uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
 
   samuraiPosition -= samuraiSpeed;
   uibyeongPosition -= uibyeongSpeed;
@@ -131,7 +133,7 @@ function endGame(message) {
   alert(message);
 
   // 위치 초기화
-  samuraiPosition = 90;
+  samuraiPosition = 80;
   uibyeongPosition = 95;
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
@@ -141,6 +143,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-
-
-

@@ -159,7 +159,7 @@ function endGame(message) {
   uibyeong.style.left = `95%`;
 
   hideSupporters();
-  alert(message); // ✅ 깔끔한 메시지만 출력
+  showPopup(message); // ✅ 커스텀 팝업 실행
 
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
@@ -195,9 +195,19 @@ function adjustCharacterBottom() {
   uibyeong.style.bottom = bottomValue;
 }
 
+function showPopup(message) {
+  document.getElementById('popup-message').textContent = message;
+  document.getElementById('popup').classList.remove('hidden');
+}
+
+function closePopup() {
+  document.getElementById('popup').classList.add('hidden');
+}
+
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

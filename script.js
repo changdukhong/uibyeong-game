@@ -68,7 +68,7 @@ function increaseEnergy() {
 
 function decayEnergy() {
   if (gameOver) return;
-  energy = Math.max(energy - 1, 0);
+  energy = Math.max(energy - 2, 0);
   updateGauge();
 }
 
@@ -145,6 +145,7 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

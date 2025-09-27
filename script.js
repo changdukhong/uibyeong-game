@@ -98,7 +98,7 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
-  // 정지 처리
+  // 두 캐릭터 정지
   samuraiSpeed = 0;
   uibyeongSpeed = 0;
 

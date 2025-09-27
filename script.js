@@ -100,12 +100,13 @@ function moveCharacters() {
 function checkCollision() {
   const samuraiRect = samurai.getBoundingClientRect();
 
-  // 사무라이가 화면 왼쪽 끝에 도달하면 도망 성공
+  // ✅ 도망 여부 먼저 확인
   if (!gameOver && samuraiRect.left <= 0) {
     endGame('💨 사무라이가 도망쳤습니다!');
     return;
   }
 
+  // 이후에 체포 여부 확인
   const uibyeongRect = uibyeong.getBoundingClientRect();
   const samuraiCenter = samuraiRect.left + samuraiRect.width / 2;
   const uibyeongCenter = uibyeongRect.left + uibyeongRect.width / 2;
@@ -140,3 +141,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

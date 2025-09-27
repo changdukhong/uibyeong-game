@@ -82,7 +82,6 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  // 의병장 속도: 최소 50% 유지 + 에너지 반영
   const minRatio = 0.5;
   const energyRatio = energy / 100;
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
@@ -143,3 +142,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

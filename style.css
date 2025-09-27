@@ -110,23 +110,21 @@ html, body {
 #game-area {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 1; /* battlefield 비율 유지 */
+  aspect-ratio: 16 / 9; /* ✅ 안정적인 화면 비율 유지 */
   background-image: url('images/battlefield.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-repeat: repeat-x;
+  background-size: cover;
   overflow: hidden;
 }
 
 /* ✅ 기본 아바타 크기 */
 #samurai, #uibyeong {
   position: absolute;
-  bottom: 5%; /* ✅ battlefield 안쪽에 위치 */
+  bottom: 50px;
   width: 100px;
   height: 100px;
   background-size: cover;
 }
-
 
 #samurai {
   background-image: url('images/samurai.png');
@@ -153,34 +151,21 @@ button {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  #game-area {
-    aspect-ratio: 16 / 9; /* ✅ 모바일에서는 더 익숙한 비율로 */
-    background-size: contain; /* ✅ 이미지 전체가 보이도록 */
-  }
-}
-
 /* ✅ 모바일에서 아바타 크기 50% 축소 */
 @media screen and (max-width: 768px) {
   #samurai, #uibyeong {
     width: 50px;
     height: 50px;
-    bottom: 2%; /* ✅ 더 아래로 붙이기 */
   }
 
   .supporter {
     width: 30px;
     height: 30px;
-    top: 5%; /* ✅ battlefield 상단 안쪽에 위치 */
   }
 
+  /* ✅ supporter 위치 보정 */
   #supporter1 { left: calc(50% - 60px); }
   #supporter2 { left: calc(50% - 30px); }
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
-
-
-
-
-

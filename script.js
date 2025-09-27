@@ -6,7 +6,7 @@ let gameOver = false;
 let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.0;       // 기본 속도 없음
+const baseSpeed = 0.020;       // 기본 속도 없음
 const maxSpeed = 0.12;       // 최대 속도
 const minRatio = 0.0;        // 클릭 없으면 완전 정지
 
@@ -140,3 +140,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

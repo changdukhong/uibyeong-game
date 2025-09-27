@@ -3,7 +3,7 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 75;
+let samuraiPosition = 65;
 let uibyeongPosition = 95;
 
 const baseSpeed = 0.2;
@@ -138,3 +138,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

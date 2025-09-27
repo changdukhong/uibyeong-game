@@ -98,5 +98,15 @@ function endGame(message) {
   clickBtn.style.display = 'none';
 }
 
+function resetSamurai() {
+  samurai.style.animation = 'none';
+  samurai.style.left = '80%';
+
+  requestAnimationFrame(() => {
+    samurai.style.animation = 'runLeft 30s linear forwards';
+  });
+}
+
 // 페이지 로드 시 게임 시작
 document.addEventListener('DOMContentLoaded', startGame);
+

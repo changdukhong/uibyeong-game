@@ -24,6 +24,7 @@ const clickBtn = document.getElementById('clickBtn');
 
 function startGame() {
   score = 0;
+  clickCount = 0; // ✅ 클릭 수 초기화
   timeLeft = 30;
   energy = 0;
   gameOver = false;
@@ -141,4 +142,5 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 

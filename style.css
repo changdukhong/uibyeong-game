@@ -1,19 +1,23 @@
 /* 공통 supporter 스타일 */
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
 .bounce {
-  transform: translateY(-20px);
+  animation: bounce 0.3s ease;
 }
 
 .supporter {
   position: absolute;
-  top: 20px; /* 상단부 위치 */
+  top: 20px;
   width: 60px;
   height: 60px;
   background-size: cover;
   background-repeat: no-repeat;
   display: none;
   z-index: 2;
-  transform: translateY(0);
-  transition: transform 0.3s ease;
 }
 
 /* 중앙 기준 좌우 배치 */
@@ -97,6 +101,7 @@ button {
 #restartBtn {
   display: none;
 }
+
 
 
 

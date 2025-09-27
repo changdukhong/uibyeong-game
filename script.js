@@ -13,6 +13,10 @@ let timerInterval;
 let moveInterval;
 let energyDecayInterval;
 let startTime;
+let supporterTimeout;
+let lastClickTime = Date.now();
+
+let clickCount = 0;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -22,9 +26,14 @@ const samurai = document.getElementById('samurai');
 const restartBtn = document.getElementById('restartBtn');
 const clickBtn = document.getElementById('clickBtn');
 
+const supporter1 = document.getElementById('supporter1');
+const supporter2 = document.getElementById('supporter2');
+const supporter3 = document.getElementById('supporter3');
+const supporter4 = document.getElementById('supporter4');
+
 function startGame() {
   score = 0;
-  clickCount = 0; // ✅ 클릭 수 초기화
+  clickCount = 0;
   scoreDisplay.textContent = `클릭 수: ${clickCount}`;
 
   timeLeft = 30;
@@ -36,9 +45,9 @@ function startGame() {
   uibyeongSpeed = baseSpeed;
   startTime = Date.now();
 
-  scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   updateGauge();
+  hideSupporters();
 
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
@@ -46,7 +55,8 @@ function startGame() {
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
 
-  clickBtn.addEventListener('click', increaseEnergy);
+  document.body.removeEventListener('click', increaseEnergy);
+  document.body.addEventListener('click', increaseEnergy);
   restartBtn.removeEventListener('click', startGame);
   restartBtn.addEventListener('click', startGame);
 
@@ -55,16 +65,24 @@ function startGame() {
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
 
-let clickCount = 0;
-
 function increaseEnergy() {
   if (gameOver) return;
   energy = Math.min(energy + 5, 100);
   clickCount += 1;
   scoreDisplay.textContent = `클릭 수: ${clickCount}`;
   updateGauge();
-}
 
+  lastClickTime = Date.now();
+  showSupporters();
+
+  clearTimeout(supporterTimeout);
+  supporterTimeout = setTimeout(() => {
+    const now = Date.now();
+    if (now - lastClickTime >= 1500) {
+      hideSupporters();
+    }
+  }, 1600);
+}
 
 function decayEnergy() {
   if (gameOver) return;
@@ -88,13 +106,11 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  // ⏱ 사무라이 시간 기반 이동
   const elapsed = Date.now() - startTime;
   const totalDuration = 30000;
   const progress = Math.min(elapsed / totalDuration, 1);
   samuraiPosition = 75 * (1 - progress);
 
-  // 🏃 의병장 속도 계산
   const energyRatio = energy / 100;
   const minRatio = 0.2;
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
@@ -128,7 +144,7 @@ function checkCollision() {
 }
 
 function endGame(message) {
-  document.body.removeEventListener('click', increaseEnergy); // ✅ 리스너 제거
+  document.body.removeEventListener('click', increaseEnergy);
   clearInterval(timerInterval);
   clearInterval(moveInterval);
   clearInterval(energyDecayInterval);
@@ -138,10 +154,25 @@ function endGame(message) {
   samurai.style.left = `75%`;
   uibyeong.style.left = `95%`;
 
+  hideSupporters();
   alert(message);
 
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
+}
+
+function showSupporters() {
+  supporter1.style.display = 'block';
+  supporter2.style.display = 'block';
+  supporter3.style.display = 'block';
+  supporter4.style.display = 'block';
+}
+
+function hideSupporters() {
+  supporter1.style.display = 'none';
+  supporter2.style.display = 'none';
+  supporter3.style.display = 'none';
+  supporter4.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', startGame);

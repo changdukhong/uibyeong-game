@@ -42,7 +42,7 @@ html, body {
 #supporter3 { left: calc(50% + 0px);   background-image: url('images/supporter3.png'); }
 #supporter4 { left: calc(50% + 60px);  background-image: url('images/supporter4.png'); }
 
-/* 기존 HUD 및 게임 영역 유지 */
+/* ✅ HUD 및 게임 영역 */
 #hud {
   display: flex;
   justify-content: space-around;
@@ -73,13 +73,14 @@ html, body {
 #game-area {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* ✅ 가장 안정적인 방식 */
+  aspect-ratio: 16 / 9; /* ✅ 안정적인 화면 비율 유지 */
   background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
   overflow: hidden;
 }
 
+/* ✅ 기본 아바타 크기 */
 #samurai, #uibyeong {
   position: absolute;
   bottom: 50px;
@@ -96,6 +97,7 @@ html, body {
   background-image: url('images/uibyeong.png');
 }
 
+/* ✅ 버튼 스타일 유지 */
 button {
   margin: 1em;
   padding: 1em 2em;
@@ -112,4 +114,21 @@ button {
   display: none;
 }
 
+/* ✅ 모바일에서 아바타 크기 50% 축소 */
+@media screen and (max-width: 768px) {
+  #samurai, #uibyeong {
+    width: 50px;
+    height: 50px;
+  }
 
+  .supporter {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ✅ supporter 위치 보정 */
+  #supporter1 { left: calc(50% - 60px); }
+  #supporter2 { left: calc(50% - 30px); }
+  #supporter3 { left: calc(50% + 0px); }
+  #supporter4 { left: calc(50% + 30px); }
+}

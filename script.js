@@ -36,7 +36,8 @@ function startGame() {
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
-  gaugeFill.style.width = '0%';
+  updateGauge();
+
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
 
@@ -48,22 +49,27 @@ function startGame() {
   restartBtn.addEventListener('click', startGame);
 
   timerInterval = setInterval(updateTimer, 1000);
-  moveInterval = setInterval(moveCharacters, 30); // 더 부드러운 움직임
-  energyDecayInterval = setInterval(decayEnergy, 300); // 에너지 감소
+  moveInterval = setInterval(moveCharacters, 30); // 부드러운 움직임
+  energyDecayInterval = setInterval(decayEnergy, 100); // 빠른 감소
 }
 
 function increaseEnergy() {
   if (gameOver) return;
   energy = Math.min(energy + 5, 100);
-  gaugeFill.style.width = `${energy}%`;
   score += 10;
   scoreDisplay.textContent = `점수: ${score}`;
+  updateGauge();
 }
 
 function decayEnergy() {
   if (gameOver) return;
   energy = Math.max(energy - 1, 0);
+  updateGauge();
+}
+
+function updateGauge() {
   gaugeFill.style.width = `${energy}%`;
+  gaugeFill.style.background = energy > 50 ? '#0f0' : energy > 20 ? '#ff0' : '#f00';
 }
 
 function updateTimer() {
@@ -78,7 +84,7 @@ function moveCharacters() {
   if (gameOver) return;
 
   // 의병장 속도는 에너지에 따라 실시간 계산
-  uibyeongSpeed = baseSpeed + (energy / 100) * speedRange;
+  uibyeongSpeed = baseSpeed * (0.5 + energy / 100);
 
   samuraiPosition -= samuraiSpeed;
   uibyeongPosition -= uibyeongSpeed;

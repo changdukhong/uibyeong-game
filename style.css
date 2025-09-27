@@ -54,12 +54,6 @@ body {
 #samurai {
   background-image: url('images/samurai.png');
   left: 80%;
-  animation: runLeft 30s linear forwards;
-}
-
-@keyframes runLeft {
-  0% { left: 80%; }
-  100% { left: 0%; }
 }
 
 #uibyeong {

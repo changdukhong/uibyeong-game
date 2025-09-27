@@ -11,7 +11,7 @@ const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const gaugeFill = document.getElementById('gauge-fill');
 const uibyeong = document.getElementById('uibyeong');
-const samurai = document.getElementById('samurai');
+let samurai = document.getElementById('samurai'); // let으로 선언해야 교체 가능
 const restartBtn = document.getElementById('restartBtn');
 const clickBtn = document.getElementById('clickBtn');
 
@@ -33,11 +33,8 @@ function startGame() {
   // 의병장 위치 초기화
   uibyeong.style.left = `${uibyeongPosition}%`;
 
-  // 사무라이 위치 및 애니메이션 초기화
-  samurai.style.animation = 'none';
-  samurai.offsetHeight; // 강제 리플로우
-  samurai.style.left = '80%';
-  samurai.style.animation = 'runLeft 30s linear forwards';
+  // 사무라이 완전 초기화
+  resetSamurai();
 
   // 이벤트 등록
   clickBtn.addEventListener('click', increaseEnergy);
@@ -48,6 +45,15 @@ function startGame() {
   timerInterval = setInterval(updateTimer, 1000);
   moveInterval = setInterval(moveUibyeong, 100);
   collisionInterval = setInterval(checkCollision, 100);
+}
+
+function resetSamurai() {
+  const newSamurai = samurai.cloneNode(true);
+  samurai.parentNode.replaceChild(newSamurai, samurai);
+  samurai = newSamurai;
+
+  samurai.style.left = '80%';
+  samurai.style.animation = 'runLeft 30s linear forwards';
 }
 
 function increaseEnergy() {

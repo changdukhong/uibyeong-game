@@ -16,30 +16,35 @@ const restartBtn = document.getElementById('restartBtn');
 const clickBtn = document.getElementById('clickBtn');
 
 function startGame() {
+  // 초기화
   score = 0;
   timeLeft = 30;
   energy = 0;
   gameOver = false;
   uibyeongPosition = 95;
 
+  // UI 초기화
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   gaugeFill.style.width = '0%';
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
 
+  // 의병장 위치 초기화
   uibyeong.style.left = `${uibyeongPosition}%`;
 
-  // 사무라이 애니메이션 재시작
+  // 사무라이 위치 및 애니메이션 초기화
   samurai.style.animation = 'none';
   samurai.offsetHeight; // 강제 리플로우
-  samurai.style.animation = 'runLeft 30s linear forwards';
   samurai.style.left = '80%';
+  samurai.style.animation = 'runLeft 30s linear forwards';
 
+  // 이벤트 등록
   clickBtn.addEventListener('click', increaseEnergy);
   restartBtn.removeEventListener('click', startGame);
   restartBtn.addEventListener('click', startGame);
 
+  // 반복 동작 시작
   timerInterval = setInterval(updateTimer, 1000);
   moveInterval = setInterval(moveUibyeong, 100);
   collisionInterval = setInterval(checkCollision, 100);
@@ -92,5 +97,5 @@ function endGame(message) {
   clickBtn.style.display = 'none';
 }
 
-// 게임 시작
+// 페이지 로드 시 게임 시작
 document.addEventListener('DOMContentLoaded', startGame);

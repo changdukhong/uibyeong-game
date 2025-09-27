@@ -3,7 +3,7 @@
   bottom: 0;
   width: 40px;
   height: 40px;
-  background-image: url('supporter.png'); /* 각 supporter 이미지로 변경 가능 */
+  background-image: url('images/supporter.png'); /* 각 supporter 이미지로 변경 가능 */
   background-size: cover;
   display: none;
 }
@@ -82,4 +82,5 @@ button {
 #restartBtn {
   display: none;
 }
+
 

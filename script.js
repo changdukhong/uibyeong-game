@@ -6,7 +6,7 @@ let gameOver = false;
 let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.2;
+const baseSpeed = 0.12;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -90,7 +90,7 @@ function moveCharacters() {
 
   // 🏃 의병장 속도 계산
   const energyRatio = energy / 100;
-  const minRatio = 0.25; // 클릭 없으면 절대 못 따라잡음
+  const minRatio = 0.2;
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
   uibyeongPosition -= uibyeongSpeed;
 
@@ -138,4 +138,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-

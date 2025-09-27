@@ -25,6 +25,8 @@ const clickBtn = document.getElementById('clickBtn');
 function startGame() {
   score = 0;
   clickCount = 0; // ✅ 클릭 수 초기화
+  scoreDisplay.textContent = `클릭 수: ${clickCount}`;
+
   timeLeft = 30;
   energy = 0;
   gameOver = false;
@@ -126,6 +128,7 @@ function checkCollision() {
 }
 
 function endGame(message) {
+  document.body.removeEventListener('click', increaseEnergy); // ✅ 리스너 제거
   clearInterval(timerInterval);
   clearInterval(moveInterval);
   clearInterval(energyDecayInterval);
@@ -142,5 +145,6 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 

@@ -179,13 +179,14 @@ function hideSupporters() {
 
 function bounceSupporters() {
   [supporter1, supporter2, supporter3, supporter4].forEach(s => {
-    s.classList.remove('bounce'); // 먼저 제거
-    void s.offsetWidth;           // 강제 리플로우로 재적용 가능하게 함
-    s.classList.add('bounce');    // 다시 추가
+    s.classList.remove('bounce');       // 기존 애니메이션 제거
+    void s.offsetWidth;                 // 강제 리플로우
+    s.classList.add('bounce');          // 다시 추가
   });
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

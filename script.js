@@ -3,7 +3,7 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 65;
+let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
 const baseSpeed = 0.2;
@@ -82,15 +82,15 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
-  // ⏱ 시간 기반 사무라이 이동
+  // ⏱ 사무라이 시간 기반 이동
   const elapsed = Date.now() - startTime;
-  const totalDuration = 30000; // 30초
-  const progress = Math.min(elapsed / totalDuration, 1); // 0~1
+  const totalDuration = 30000;
+  const progress = Math.min(elapsed / totalDuration, 1);
   samuraiPosition = 75 * (1 - progress);
 
   // 🏃 의병장 속도 계산
   const energyRatio = energy / 100;
-  const minRatio = 0.6;
+  const minRatio = 0.25; // 클릭 없으면 절대 못 따라잡음
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
   uibyeongPosition -= uibyeongSpeed;
 
@@ -138,7 +138,4 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-
-
-
 

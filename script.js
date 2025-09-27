@@ -3,8 +3,9 @@ let timeLeft = 30;
 let energy = 0;
 let timerInterval;
 let moveInterval;
+let collisionInterval;
 let gameOver = false;
-let uibyeongPosition = 95; // 우측 끝단에서 시작
+let uibyeongPosition = 95;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -28,17 +29,20 @@ function startGame() {
   clickBtn.style.display = 'inline-block';
 
   uibyeong.style.left = `${uibyeongPosition}%`;
-  samurai.style.left = '80%';
+
+  // 사무라이 애니메이션 재시작
+  samurai.style.animation = 'none';
+  samurai.offsetHeight; // 강제 리플로우
   samurai.style.animation = 'runLeft 30s linear forwards';
+  samurai.style.left = '80%';
 
   clickBtn.addEventListener('click', increaseEnergy);
+  restartBtn.removeEventListener('click', startGame);
+  restartBtn.addEventListener('click', startGame);
 
   timerInterval = setInterval(updateTimer, 1000);
   moveInterval = setInterval(moveUibyeong, 100);
-
-  setInterval(() => {
-    if (!gameOver) checkCollision();
-  }, 100);
+  collisionInterval = setInterval(checkCollision, 100);
 }
 
 function increaseEnergy() {
@@ -79,6 +83,7 @@ function checkCollision() {
 function endGame(message) {
   clearInterval(timerInterval);
   clearInterval(moveInterval);
+  clearInterval(collisionInterval);
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
@@ -88,4 +93,4 @@ function endGame(message) {
 }
 
 // 게임 시작
-startGame();
+document.addEventListener('DOMContentLoaded', startGame);

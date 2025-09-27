@@ -6,7 +6,7 @@ let gameOver = false;
 let samuraiPosition = 80;
 let uibyeongPosition = 95;
 const samuraiSpeed = 0.3;
-let uibyeongSpeed = 0.3;
+let uibyeongSpeed = 0.3; // 기본 속도 부여
 
 let timerInterval;
 let moveInterval;
@@ -26,7 +26,7 @@ function startGame() {
   gameOver = false;
   samuraiPosition = 80;
   uibyeongPosition = 95;
-  uibyeongSpeed = 0.3;
+  uibyeongSpeed = 0.3; // 다시 시작 시에도 기본 속도 부여
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
@@ -51,7 +51,7 @@ function increaseEnergy() {
   gaugeFill.style.width = `${energy}%`;
   score += 10;
   scoreDisplay.textContent = `점수: ${score}`;
-  uibyeongSpeed += 0.05;
+  uibyeongSpeed += 0.05; // 클릭 시 가속도 증가
 }
 
 function updateTimer() {

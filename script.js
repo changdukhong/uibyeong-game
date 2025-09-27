@@ -103,8 +103,16 @@ function endGame(message) {
   uibyeongSpeed = 0;
 
   alert(message);
+
+  // 위치 초기화 (시각적 리셋)
+  samuraiPosition = 80;
+  uibyeongPosition = 95;
+  samurai.style.left = `${samuraiPosition}%`;
+  uibyeong.style.left = `${uibyeongPosition}%`;
+
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+

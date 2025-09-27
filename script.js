@@ -3,10 +3,10 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 85;
+let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.02;
+const baseSpeed = 0.0;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -28,12 +28,12 @@ function startGame() {
   energy = 0;
   gameOver = false;
 
-  samuraiPosition = 85;
+  samuraiPosition = 75;
   uibyeongPosition = 95;
   uibyeongSpeed = baseSpeed;
   startTime = Date.now();
 
-  scoreDisplay.textContent = `클릭 수: ${score}`;
+  scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   updateGauge();
 
@@ -129,10 +129,9 @@ function endGame(message) {
   clearInterval(moveInterval);
   clearInterval(energyDecayInterval);
   clickBtn.removeEventListener('click', increaseEnergy);
-
   gameOver = true;
 
-  samurai.style.left = `85%`;
+  samurai.style.left = `75%`;
   uibyeong.style.left = `95%`;
 
   alert(message);
@@ -142,9 +141,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-
-
-
-
-
-

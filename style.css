@@ -110,10 +110,12 @@ html, body {
 #game-area {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* ✅ 안정적인 화면 비율 유지 */
+  aspect-ratio: 5 / 1; /* ✅ 2000:400 비율 유지 */
   background-image: url('images/battlefield.png');
-  background-repeat: repeat-x;
-  background-size: cover;
+  background-size: cover;       /* ✅ 자동 리샘플링 */
+  background-repeat: no-repeat; /* ✅ 반복 제거 */
+  background-position: center;  /* ✅ 중앙 정렬 */
+  image-rendering: auto;        /* ✅ 부드러운 축소 */
   overflow: hidden;
 }
 
@@ -151,6 +153,13 @@ button {
   display: none;
 }
 
+@media screen and (max-width: 768px) {
+  #game-area {
+    aspect-ratio: 16 / 9; /* ✅ 모바일에서는 더 익숙한 비율로 */
+    background-size: contain; /* ✅ 이미지 전체가 보이도록 */
+  }
+}
+
 /* ✅ 모바일에서 아바타 크기 50% 축소 */
 @media screen and (max-width: 768px) {
   #samurai, #uibyeong {
@@ -169,4 +178,5 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 

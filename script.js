@@ -28,7 +28,7 @@ function startGame() {
   energy = 0;
   gameOver = false;
 
-  samuraiPosition = 75;
+  samuraiPosition = 85;
   uibyeongPosition = 95;
   uibyeongSpeed = baseSpeed;
   startTime = Date.now();
@@ -141,5 +141,6 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 

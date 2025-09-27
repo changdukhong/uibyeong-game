@@ -1,4 +1,8 @@
 /* 공통 supporter 스타일 */
+.bounce {
+  transform: translateY(-20px);
+}
+
 .supporter {
   position: absolute;
   top: 20px; /* 상단부 위치 */
@@ -93,6 +97,7 @@ button {
 #restartBtn {
   display: none;
 }
+
 
 
 

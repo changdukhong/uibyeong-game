@@ -73,8 +73,7 @@ html, body {
 #game-area {
   position: relative;
   width: 100%;
-  height: calc(100vw * 0.5625); /* ✅ 16:9 비율 유지 */
-  max-height: 100vh;
+  aspect-ratio: 16 / 9; /* ✅ 가장 안정적인 방식 */
   background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
@@ -112,4 +111,5 @@ button {
 #restartBtn {
   display: none;
 }
+
 

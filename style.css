@@ -28,7 +28,7 @@ body {
 
 #gauge-fill {
   height: 100%;
-  width: 0%;
+  width: 100%;
   background: #f00;
   transition: width 0.3s ease;
 }
@@ -40,7 +40,7 @@ body {
   background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
-  animation: scrollBg 20s linear infinite;
+  animation: scrollBg 30s linear forwards;
   overflow: hidden;
 }
 
@@ -60,7 +60,7 @@ body {
 #samurai {
   background-image: url('images/samurai.png');
   left: 80%;
-  animation: runLeft 30s linear infinite;
+  animation: runLeft 30s linear forwards;
 }
 
 @keyframes runLeft {
@@ -73,22 +73,6 @@ body {
   left: 0%;
 }
 
-.supporter {
-  position: absolute;
-  top: 20px;
-  width: 80px;
-  height: 80px;
-  background-image: url('images/supporter.png');
-  background-size: cover;
-  animation: bounceMove 5s linear infinite;
-}
-
-@keyframes bounceMove {
-  0% { transform: translateX(100%) translateY(0); }
-  50% { transform: translateX(50%) translateY(-20px); }
-  100% { transform: translateX(0%) translateY(0); }
-}
-
 button {
   margin: 1em;
   padding: 1em 2em;
@@ -99,3 +83,6 @@ button {
   cursor: pointer;
 }
 
+#restartBtn {
+  display: none;
+}

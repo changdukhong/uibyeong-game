@@ -28,8 +28,8 @@ body {
 
 #gauge-fill {
   height: 100%;
-  width: 100%;
-  background: #f00;
+  width: 0%;
+  background: #0f0;
   transition: width 0.3s ease;
 }
 
@@ -40,13 +40,7 @@ body {
   background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
-  animation: scrollBg 30s linear forwards;
   overflow: hidden;
-}
-
-@keyframes scrollBg {
-  0% { background-position: 0 0; }
-  100% { background-position: -2000px 0; }
 }
 
 #samurai, #uibyeong {
@@ -70,7 +64,7 @@ body {
 
 #uibyeong {
   background-image: url('images/uibyeong.png');
-  left: 0%;
+  left: 80%;
 }
 
 button {

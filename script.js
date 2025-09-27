@@ -131,7 +131,7 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
-  samurai.style.left = `75%`;
+  samurai.style.left = `85%`;
   uibyeong.style.left = `95%`;
 
   alert(message);
@@ -141,4 +141,5 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 

@@ -1,4 +1,4 @@
-let score = 0;
+let clickCount = 0;
 let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
@@ -6,15 +6,18 @@ let gameOver = false;
 let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.0;
-let uibyeongSpeed = baseSpeed;
+const baseSpeed = 0.0;       // 기본 속도 없음
+const maxSpeed = 0.12;       // 최대 속도
+const minRatio = 0.0;        // 클릭 없으면 완전 정지
+
+let uibyeongSpeed = 0.0;
 
 let timerInterval;
 let moveInterval;
 let energyDecayInterval;
 let startTime;
 
-const scoreDisplay = document.getElementById('score');
+const clickDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const gaugeFill = document.getElementById('gauge-fill');
 const uibyeong = document.getElementById('uibyeong');
@@ -23,17 +26,17 @@ const restartBtn = document.getElementById('restartBtn');
 const clickBtn = document.getElementById('clickBtn');
 
 function startGame() {
-  score = 0;
+  clickCount = 0;
   timeLeft = 30;
   energy = 0;
   gameOver = false;
 
   samuraiPosition = 75;
   uibyeongPosition = 95;
-  uibyeongSpeed = baseSpeed;
+  uibyeongSpeed = 0.0;
   startTime = Date.now();
 
-  scoreDisplay.textContent = `점수: ${score}`;
+  clickDisplay.textContent = `클릭 수: ${clickCount}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   updateGauge();
 
@@ -52,16 +55,13 @@ function startGame() {
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
 
-let clickCount = 0;
-
 function increaseEnergy() {
   if (gameOver) return;
   energy = Math.min(energy + 5, 100);
   clickCount += 1;
-  scoreDisplay.textContent = `클릭 수: ${clickCount}`;
+  clickDisplay.textContent = `클릭 수: ${clickCount}`;
   updateGauge();
 }
-
 
 function decayEnergy() {
   if (gameOver) return;
@@ -91,10 +91,9 @@ function moveCharacters() {
   const progress = Math.min(elapsed / totalDuration, 1);
   samuraiPosition = 75 * (1 - progress);
 
-  // 🏃 의병장 속도 계산
+  // 🏃 의병장 속도 계산 (클릭 없으면 정지)
   const energyRatio = energy / 100;
-  const minRatio = 0.2;
-  uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
+  uibyeongSpeed = maxSpeed * (minRatio + energyRatio * (1 - minRatio));
   uibyeongPosition -= uibyeongSpeed;
 
   samuraiPosition = Math.max(samuraiPosition, 0);
@@ -141,5 +140,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-
-

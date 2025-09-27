@@ -7,12 +7,12 @@ let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
 const baseSpeed = 0.2;
-let samuraiSpeed = 0.03; // 사무라이 속도 고정
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
 let moveInterval;
 let energyDecayInterval;
+let startTime;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -30,8 +30,8 @@ function startGame() {
 
   samuraiPosition = 75;
   uibyeongPosition = 95;
-  samuraiSpeed = 0.08;
   uibyeongSpeed = baseSpeed;
+  startTime = Date.now();
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
@@ -82,11 +82,16 @@ function updateTimer() {
 function moveCharacters() {
   if (gameOver) return;
 
+  // ⏱ 시간 기반 사무라이 이동
+  const elapsed = Date.now() - startTime;
+  const totalDuration = 30000; // 30초
+  const progress = Math.min(elapsed / totalDuration, 1); // 0~1
+  samuraiPosition = 75 * (1 - progress);
+
+  // 🏃 의병장 속도 계산
   const energyRatio = energy / 100;
   const minRatio = 0.6;
   uibyeongSpeed = baseSpeed * (minRatio + energyRatio * (1 - minRatio));
-
-  samuraiPosition -= samuraiSpeed;
   uibyeongPosition -= uibyeongSpeed;
 
   samuraiPosition = Math.max(samuraiPosition, 0);
@@ -123,19 +128,13 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
-  samuraiSpeed = 0;
-  uibyeongSpeed = 0;
+  samurai.style.left = `75%`;
+  uibyeong.style.left = `95%`;
 
   alert(message);
-
-  samuraiPosition = 75;
-  uibyeongPosition = 95;
-  samurai.style.left = `${samuraiPosition}%`;
-  uibyeong.style.left = `${uibyeongPosition}%`;
 
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-

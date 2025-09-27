@@ -55,6 +55,8 @@ function startGame() {
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
 
+  adjustCharacterBottom(); // ✅ 위치 조정
+
   document.body.removeEventListener('click', increaseEnergy);
   document.body.addEventListener('click', increaseEnergy);
   restartBtn.removeEventListener('click', startGame);
@@ -185,7 +187,18 @@ function bounceSupporters() {
   });
 }
 
+function adjustCharacterBottom() {
+  const isMobile = window.innerWidth <= 768;
+  const bottomValue = isMobile ? '10px' : '50px';
+
+  samurai.style.bottom = bottomValue;
+  uibyeong.style.bottom = bottomValue;
+}
+
+window.addEventListener('resize', adjustCharacterBottom);
+
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

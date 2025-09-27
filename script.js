@@ -6,9 +6,9 @@ let gameOver = false;
 let samuraiPosition = 90;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.3;
-let samuraiSpeed = baseSpeed * 3.0;
-let uibyeongSpeed = baseSpeed;
+const baseSpeed = 0.2;
+let samuraiSpeed = baseSpeed * 1.5; // 0.3
+let uibyeongSpeed = baseSpeed;      // 0.2
 
 let timerInterval;
 let moveInterval;
@@ -141,4 +141,5 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 

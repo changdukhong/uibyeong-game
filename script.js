@@ -84,9 +84,10 @@ function checkCollision() {
   const samuraiRect = samurai.getBoundingClientRect();
   const uibyeongRect = uibyeong.getBoundingClientRect();
 
+  // 체포 조건: 의병장의 오른쪽이 사무라이의 왼쪽에 닿을 때
   if (
-    samuraiRect.left < uibyeongRect.right &&
-    samuraiRect.right > uibyeongRect.left
+    !gameOver &&
+    uibyeongRect.right >= samuraiRect.left
   ) {
     endGame('🎯 체포 성공!');
   }
@@ -98,7 +99,7 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
-  // 두 캐릭터 정지
+  // 정지 처리
   samuraiSpeed = 0;
   uibyeongSpeed = 0;
 
@@ -115,4 +116,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-

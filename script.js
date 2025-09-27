@@ -74,6 +74,7 @@ function increaseEnergy() {
 
   lastClickTime = Date.now();
   showSupporters();
+  bounceSupporters(); // ✅ 바운스 효과
 
   clearTimeout(supporterTimeout);
   supporterTimeout = setTimeout(() => {
@@ -175,7 +176,16 @@ function hideSupporters() {
   supporter4.style.display = 'none';
 }
 
+function bounceSupporters() {
+  const bounceClass = 'bounce';
+  [supporter1, supporter2, supporter3, supporter4].forEach(s => {
+    s.classList.add(bounceClass);
+    setTimeout(() => s.classList.remove(bounceClass), 300);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

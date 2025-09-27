@@ -37,7 +37,7 @@ body {
   position: relative;
   width: 100%;
   height: 400px;
-  background-image: url('battlefield.png');
+  background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
   animation: scrollBg 20s linear infinite;
@@ -58,7 +58,7 @@ body {
 }
 
 #samurai {
-  background-image: url('samurai.png');
+  background-image: url('images/samurai.png');
   left: 80%;
   animation: runLeft 30s linear infinite;
 }
@@ -69,7 +69,7 @@ body {
 }
 
 #uibyeong {
-  background-image: url('uibyeong1.png');
+  background-image: url('images/uibyeong.png');
   left: 0%;
 }
 
@@ -78,7 +78,7 @@ body {
   top: 20px;
   width: 80px;
   height: 80px;
-  background-image: url('supporter.png');
+  background-image: url('images/supporter.png');
   background-size: cover;
   animation: bounceMove 5s linear infinite;
 }
@@ -98,3 +98,4 @@ button {
   border-radius: 10px;
   cursor: pointer;
 }
+

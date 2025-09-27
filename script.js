@@ -84,12 +84,12 @@ function checkCollision() {
   const samuraiRect = samurai.getBoundingClientRect();
   const uibyeongRect = uibyeong.getBoundingClientRect();
 
-  const buffer = 5; // 시각적 보정값
+  const samuraiCenter = samuraiRect.left + samuraiRect.width / 2;
+  const uibyeongCenter = uibyeongRect.left + uibyeongRect.width / 2;
 
-  if (
-    !gameOver &&
-    uibyeongRect.left <= samuraiRect.left + buffer
-  ) {
+  const distance = Math.abs(samuraiCenter - uibyeongCenter);
+
+  if (!gameOver && distance <= 5) {
     endGame('🎯 체포 성공!');
   }
 }
@@ -117,4 +117,5 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 

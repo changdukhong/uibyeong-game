@@ -6,7 +6,7 @@ let gameOver = false;
 let samuraiPosition = 80;
 let uibyeongPosition = 95;
 const baseSpeed = 0.3;
-let samuraiSpeed = baseSpeed;
+let samuraiSpeed = baseSpeed * 1.5;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -28,8 +28,9 @@ function startGame() {
 
   samuraiPosition = 80;
   uibyeongPosition = 95;
-  samuraiSpeed = baseSpeed;
+  samuraiSpeed = baseSpeed * 1.5;
   uibyeongSpeed = baseSpeed;
+
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
@@ -117,5 +118,6 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 

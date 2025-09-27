@@ -4,7 +4,7 @@ let energy = 0;
 let timerInterval;
 let moveInterval;
 let gameOver = false;
-let uibyeongPosition = 80; // 시작 위치: 오른쪽
+let uibyeongPosition = 95; // 우측 끝단에서 시작
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -12,24 +12,26 @@ const gaugeFill = document.getElementById('gauge-fill');
 const uibyeong = document.getElementById('uibyeong');
 const samurai = document.getElementById('samurai');
 const restartBtn = document.getElementById('restartBtn');
+const clickBtn = document.getElementById('clickBtn');
 
 function startGame() {
   score = 0;
   timeLeft = 30;
   energy = 0;
   gameOver = false;
-  uibyeongPosition = 80;
+  uibyeongPosition = 95;
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   gaugeFill.style.width = '0%';
   restartBtn.style.display = 'none';
+  clickBtn.style.display = 'inline-block';
 
   uibyeong.style.left = `${uibyeongPosition}%`;
   samurai.style.left = '80%';
   samurai.style.animation = 'runLeft 30s linear forwards';
 
-  uibyeong.addEventListener('click', increaseEnergy);
+  clickBtn.addEventListener('click', increaseEnergy);
 
   timerInterval = setInterval(updateTimer, 1000);
   moveInterval = setInterval(moveUibyeong, 100);
@@ -77,9 +79,13 @@ function checkCollision() {
 function endGame(message) {
   clearInterval(timerInterval);
   clearInterval(moveInterval);
-  uibyeong.removeEventListener('click', increaseEnergy);
+  clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
   alert(message);
   restartBtn.style.display = 'inline-block';
+  clickBtn.style.display = 'none';
 }
+
+// 게임 시작
+startGame();

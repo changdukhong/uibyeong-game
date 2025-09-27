@@ -3,14 +3,17 @@ let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
 
-let samuraiPosition = 80;
+let samuraiPosition = 90;
 let uibyeongPosition = 95;
+
 const baseSpeed = 0.3;
-let samuraiSpeed = baseSpeed * 2.0;
+const speedRange = 0.3; // 에너지에 따른 추가 속도
+let samuraiSpeed = baseSpeed * 3.0;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
 let moveInterval;
+let energyDecayInterval;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -26,11 +29,10 @@ function startGame() {
   energy = 0;
   gameOver = false;
 
-  samuraiPosition = 80;
+  samuraiPosition = 90;
   uibyeongPosition = 95;
-  samuraiSpeed = baseSpeed * 2.0;
+  samuraiSpeed = baseSpeed * 3.0;
   uibyeongSpeed = baseSpeed;
-
 
   scoreDisplay.textContent = `점수: ${score}`;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
@@ -46,7 +48,8 @@ function startGame() {
   restartBtn.addEventListener('click', startGame);
 
   timerInterval = setInterval(updateTimer, 1000);
-  moveInterval = setInterval(moveCharacters, 100);
+  moveInterval = setInterval(moveCharacters, 30); // 더 부드러운 움직임
+  energyDecayInterval = setInterval(decayEnergy, 300); // 에너지 감소
 }
 
 function increaseEnergy() {
@@ -55,7 +58,12 @@ function increaseEnergy() {
   gaugeFill.style.width = `${energy}%`;
   score += 10;
   scoreDisplay.textContent = `점수: ${score}`;
-  uibyeongSpeed += 0.05;
+}
+
+function decayEnergy() {
+  if (gameOver) return;
+  energy = Math.max(energy - 1, 0);
+  gaugeFill.style.width = `${energy}%`;
 }
 
 function updateTimer() {
@@ -68,6 +76,9 @@ function updateTimer() {
 
 function moveCharacters() {
   if (gameOver) return;
+
+  // 의병장 속도는 에너지에 따라 실시간 계산
+  uibyeongSpeed = baseSpeed + (energy / 100) * speedRange;
 
   samuraiPosition -= samuraiSpeed;
   uibyeongPosition -= uibyeongSpeed;
@@ -98,6 +109,7 @@ function checkCollision() {
 function endGame(message) {
   clearInterval(timerInterval);
   clearInterval(moveInterval);
+  clearInterval(energyDecayInterval);
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
@@ -107,8 +119,8 @@ function endGame(message) {
 
   alert(message);
 
-  // 위치 초기화 (시각적 리셋)
-  samuraiPosition = 80;
+  // 위치 초기화
+  samuraiPosition = 90;
   uibyeongPosition = 95;
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
@@ -118,10 +130,3 @@ function endGame(message) {
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
-
-
-
-
-
-
-

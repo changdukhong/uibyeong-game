@@ -78,8 +78,8 @@ html, body {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   z-index: 1000;
   animation: bounce 1s infinite;
 }
@@ -185,6 +185,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

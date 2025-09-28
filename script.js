@@ -31,6 +31,8 @@ const supporter2 = document.getElementById('supporter2');
 const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
+const cheerSound = document.getElementById('cheerSound');
+
 function startGame() {
   score = 0;
   clickCount = 0;
@@ -56,6 +58,9 @@ function startGame() {
   uibyeong.style.left = `${uibyeongPosition}%`;
 
   adjustCharacterBottom(); // ✅ 위치 조정
+
+  cheerSound.currentTime = 0;
+  cheerSound.play(); // ✅ 함성 시작
 
   document.body.removeEventListener('click', increaseEnergy);
   document.body.addEventListener('click', increaseEnergy);
@@ -159,6 +164,10 @@ function endGame(message) {
   uibyeong.style.left = `95%`;
 
   hideSupporters();
+
+  cheerSound.pause();       // ✅ 함성 정지
+  cheerSound.currentTime = 0;
+  
   showPopup(message); // ✅ 커스텀 팝업 실행
 
   restartBtn.style.display = 'inline-block';
@@ -207,6 +216,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

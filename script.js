@@ -59,11 +59,6 @@ function startGame() {
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
-clickBtn.addEventListener('click', () => {
-  cheerSound.currentTime = 0;
-  cheerSound.play();
-});
-
   document.body.removeEventListener('click', increaseEnergy);
   document.body.addEventListener('click', increaseEnergy);
   restartBtn.removeEventListener('click', startGame);
@@ -73,6 +68,14 @@ clickBtn.addEventListener('click', () => {
   moveInterval = setInterval(moveCharacters, 30);
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
+
+clickBtn.addEventListener('click', () => {
+  if (gameOver) return;
+  cheerSound.currentTime = 0;
+  cheerSound.play().catch(e => {
+    console.warn("오디오 재생 실패:", e);
+  });
+});
 
 function increaseEnergy() {
   if (gameOver) return;
@@ -218,6 +221,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

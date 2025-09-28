@@ -57,6 +57,14 @@ function startGame() {
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
 
+
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  if (!isMobile && cheerSound.paused) {
+    cheerSound.currentTime = 0;
+    cheerSound.play().catch(e => console.warn("PC 오디오 실패:", e));
+  }
+
+
   adjustCharacterBottom(); // ✅ 위치 조정
 
   document.body.removeEventListener('click', increaseEnergy);
@@ -72,9 +80,17 @@ function startGame() {
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
 
-  if (cheerSound.paused) {
-    cheerSound.currentTime = 0;
-    cheerSound.play().catch(e => console.warn("오디오 재생 실패:", e));
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // 모바일은 사용자 클릭 시 한 번만 재생
+    if (cheerSound.paused) {
+      cheerSound.currentTime = 0;
+      cheerSound.play().catch(e => console.warn("모바일 오디오 실패:", e));
+    }
+  } else {
+    // PC는 startGame에서 재생하고 클릭 시 건드리지 않음
+    // 아무 것도 하지 않음
   }
 });
 
@@ -222,6 +238,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

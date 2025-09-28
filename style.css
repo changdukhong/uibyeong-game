@@ -90,8 +90,14 @@ html, body {
   50% { transform: translateY(-15px); }
 }     */
 
-/* ✅ 중앙 기준 좌우 배치 */
-#supporter1 { left: calc(50% - 120px); background-image: url('images/supporter1.png'); }
+/* ✅ 중앙 기준 좌우 배치
+#supporter1 { left: calc(50% - 120px); background-image: url('images/supporter1.png'); }  */
+
+#supporter1 {
+  top: 10px;
+  left: 10px;
+  background-image: url('images/oni.png'); /* 오니 이미지로 교체 */
+}
 #supporter2 { left: calc(50% - 60px);  background-image: url('images/supporter2.png'); }
 #supporter3 { left: calc(50% + 0px);   background-image: url('images/supporter3.png'); }
 #supporter4 { left: calc(50% + 60px);  background-image: url('images/supporter4.png'); }
@@ -196,6 +202,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

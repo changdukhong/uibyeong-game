@@ -134,7 +134,7 @@ html, body {
 #game-area {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* ✅ 안정적인 화면 비율 유지 */
+  aspect-ratio: 985 / 657; /* ✅ 안정적인 화면 비율 유지, 16 : 9 */
   background-image: url('images/battlefield.png');
   background-repeat: repeat-x;
   background-size: cover;
@@ -203,6 +203,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

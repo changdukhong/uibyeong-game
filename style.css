@@ -83,12 +83,12 @@ html, body {
   height: 60px;
   z-index: 1000;
   animation: bounce 1s infinite;
-}   */
+} 
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
-}
+}     */
 
 /* ✅ 중앙 기준 좌우 배치 */
 #supporter1 { left: calc(50% - 120px); background-image: url('images/supporter1.png'); }
@@ -196,6 +196,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -74,6 +74,7 @@ html, body {
   z-index: 2;
 }
 
+/*
 #oni-supporter {
   position: absolute;
   top: 10px;
@@ -82,7 +83,7 @@ html, body {
   height: 60px;
   z-index: 1000;
   animation: bounce 1s infinite;
-}
+}   */
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
@@ -179,18 +180,23 @@ button {
     height: 30px;
   }
 
+  
+  /* 
 @media screen and (max-width: 768px) {
   #oni-supporter {
     width: 30px;
     height: 30px;
   }
-}
+}  */
+
+  
   /* ✅ supporter 위치 보정 */
   #supporter1 { left: calc(50% - 60px); }
   #supporter2 { left: calc(50% - 30px); }
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -31,7 +31,7 @@ const supporter2 = document.getElementById('supporter2');
 const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
-const cheerSound = document.getElementById('cheerSound');
+// const cheerSound = document.getElementById('cheerSound');
 
 function startGame() {
   score = 0;
@@ -246,6 +246,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

@@ -59,8 +59,8 @@ function startGame() {
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
-  cheerSound.currentTime = 0;
-  cheerSound.play(); // ✅ 함성 시작
+  // cheerSound.currentTime = 0;
+  // cheerSound.play(); // ✅ 함성 시작
 
   document.body.removeEventListener('click', increaseEnergy);
   document.body.addEventListener('click', increaseEnergy);
@@ -165,8 +165,8 @@ function endGame(message) {
 
   hideSupporters();
 
-  cheerSound.pause();       // ✅ 함성 정지
-  cheerSound.currentTime = 0;
+  // cheerSound.pause();       // ✅ 함성 정지
+  // cheerSound.currentTime = 0;
   
   showPopup(message); // ✅ 커스텀 팝업 실행
 
@@ -216,6 +216,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

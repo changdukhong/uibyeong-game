@@ -64,6 +64,7 @@ function startGame() {
     cheerSound.play().catch(e => console.warn("PC 오디오 실패:", e));
   }
 
+  setRandomBattlefield(); // ✅ 배경 랜덤 설정
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
@@ -243,9 +244,30 @@ function closePopup() {
   document.getElementById('popup').classList.add('hidden');
 }
 
+function setRandomBattlefield() {
+  const battlefield = document.getElementById('game-area');
+  const backgrounds = [
+    'images/battlefield01.png',
+    'images/battlefield02.png',
+    'images/battlefield03.png',
+    'images/battlefield04.png',
+    'images/battlefield05.png',
+    'images/battlefield06.png',
+    'images/battlefield07.png',
+    'images/battlefield08.png',
+    'images/battlefield09.png',
+    'images/battlefield10.png',
+    'images/battlefield11.png',
+    'images/battlefield12.png'
+  ];
+  const randomIndex = Math.floor(Math.random() * backgrounds.length);
+  battlefield.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
+}
+
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

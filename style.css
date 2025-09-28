@@ -94,8 +94,8 @@ html, body {
 #supporter1 { left: calc(50% - 120px); background-image: url('images/supporter1.png'); }  */
 
 #supporter1 {
-  top: 10px;
-  left: 10px;
+  top: 10px !important;
+  left: 10px !important;
   background-image: url('images/oni.png'); /* 오니 이미지로 교체 */
 }
 #supporter2 { left: calc(50% - 60px);  background-image: url('images/supporter2.png'); }
@@ -202,6 +202,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

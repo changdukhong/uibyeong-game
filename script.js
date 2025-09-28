@@ -59,8 +59,10 @@ function startGame() {
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
+clickBtn.addEventListener('click', () => {
   cheerSound.currentTime = 0;
-  cheerSound.play(); // ✅ 함성 시작
+  cheerSound.play();
+});
 
   document.body.removeEventListener('click', increaseEnergy);
   document.body.addEventListener('click', increaseEnergy);
@@ -216,6 +218,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

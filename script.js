@@ -57,6 +57,11 @@ function startGame() {
   samurai.style.left = `${samuraiPosition}%`;
   uibyeong.style.left = `${uibyeongPosition}%`;
 
+  if (cheerSound.paused) {
+    cheerSound.currentTime = 0;
+    cheerSound.play().catch(e => console.warn("오디오 재생 실패:", e));
+  }
+  
   adjustCharacterBottom(); // ✅ 위치 조정
 
   document.body.removeEventListener('click', increaseEnergy);
@@ -71,10 +76,11 @@ function startGame() {
 
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
-  cheerSound.currentTime = 0;
-  cheerSound.play().catch(e => {
-    console.warn("오디오 재생 실패:", e);
-  });
+
+  if (cheerSound.paused) {
+    cheerSound.currentTime = 0;
+    cheerSound.play().catch(e => console.warn("오디오 재생 실패:", e));
+  }
 });
 
 function increaseEnergy() {
@@ -221,6 +227,7 @@ function closePopup() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

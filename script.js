@@ -189,7 +189,11 @@ function endGame(message) {
 
   cheerSound.pause();       // ✅ 함성 정지
   cheerSound.currentTime = 0;
-  
+
+  if (message.includes('체포')) {
+    showFireworks(); // ✅ 축포 실행
+  }
+
   showPopup(message); // ✅ 커스텀 팝업 실행
 
   restartBtn.style.display = 'inline-block';
@@ -235,9 +239,20 @@ function closePopup() {
   document.getElementById('popup').classList.add('hidden');
 }
 
+function showFireworks() {
+  const fw = document.getElementById('fireworks');
+  fw.classList.remove('hidden');
+  fw.style.animation = 'fadeOut 2s ease-out forwards';
+
+  setTimeout(() => {
+    fw.classList.add('hidden');
+  }, 2000);
+}
+
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

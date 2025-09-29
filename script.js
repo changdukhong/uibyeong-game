@@ -266,7 +266,17 @@ function setRandomBattlefield() {
 
 window.addEventListener('resize', adjustCharacterBottom);
 
+document.getElementById('messageBox').addEventListener('click', () => {
+  const samurai = document.getElementById('samurai');
+  samurai.classList.add('charge');
+
+  setTimeout(() => {
+    samurai.classList.remove('charge');
+  }, 1200); // 애니메이션 지속 시간과 동일
+});
+
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

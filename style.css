@@ -44,6 +44,10 @@ html, body {
   z-index: 9999;
 }
 
+#samurai {
+  display: block;
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -222,6 +226,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

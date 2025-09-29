@@ -24,6 +24,25 @@ html, body {
   animation: bounce 0.4s ease;
 }
 
+@keyframes chargeForward {
+  0% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(5) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+#samurai.charge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: chargeForward 1.2s ease-out forwards;
+  z-index: 9999;
+}
 
 .popup {
   position: fixed;
@@ -203,6 +222,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

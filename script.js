@@ -183,6 +183,22 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
+
+  
+  const messageBox = document.getElementById('messageBox');
+  messageBox.textContent = message;
+  messageBox.classList.remove('hidden');
+
+  // 사무라이 돌진 연출
+  const samurai = document.getElementById('samurai');
+  samurai.classList.add('charge');
+
+  setTimeout(() => {
+    samurai.classList.remove('charge');
+  }, 1200);
+
+
+  
   samurai.style.left = `75%`;
   uibyeong.style.left = `95%`;
 
@@ -267,6 +283,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

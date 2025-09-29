@@ -195,7 +195,7 @@ function endGame(message) {
 
   setTimeout(() => {
     samurai.classList.remove('charge');
-  }, 1200);
+  }, 2000);
 
 
   
@@ -283,6 +283,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

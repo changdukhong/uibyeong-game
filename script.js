@@ -131,7 +131,7 @@ function updateTimer() {
   timeLeft--;
   timerDisplay.textContent = `남은 시간: ${timeLeft}초`;
   if (timeLeft <= 0) {
-    endGame('⏱ 시간 초과! 사무라이가 도망쳤습니다.');
+    endGame('⏱ 시간 초과! 에휴, 놓쳤네…');
   }
 }
 
@@ -161,7 +161,7 @@ function checkCollision() {
   const samuraiRect = samurai.getBoundingClientRect();
 
   if (!gameOver && samuraiRect.left <= 0) {
-    endGame('💨 사무라이가 도망쳤습니다!');
+    endGame('💨 에휴, 놓쳤네…');
     return;
   }
 
@@ -283,6 +283,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

@@ -37,8 +37,8 @@ html, body {
 
 #samurai.charge {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; !important;
+  left: 50%; !important;
   transform: translate(-50%, -50%);
   animation: chargeForward 1.2s ease-out forwards;
   z-index: 9999;
@@ -226,6 +226,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

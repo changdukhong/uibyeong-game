@@ -35,9 +35,6 @@ const supporter4 = document.getElementById('supporter4');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
-const tickerText = document.getElementById('ticker-text');
-tickerText.textContent = "의병장님 힘내세요! 사무라이를 반드시 잡을 수 있습니다!";
-
 
 // const samurais = Array.from(document.querySelectorAll('.samurai'));
 // let activeSamurai = null;
@@ -323,6 +320,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

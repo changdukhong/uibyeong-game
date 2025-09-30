@@ -321,6 +321,10 @@ window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
 
+const tickerText = document.getElementById('ticker-text');
+tickerText.textContent = "의병장님 힘내세요! 사무라이를 반드시 잡을 수 있습니다!";
+
+
 
 
 

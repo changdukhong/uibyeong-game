@@ -44,11 +44,6 @@ function applyRandomEffect(element) {
   }, 600);
 }
 
-const characters = [
-  document.getElementById('samurai'),
-  document.getElementById('commander')
-];
-
 setInterval(() => {
   characters.forEach(applyRandomEffect);
 }, 3000);
@@ -305,6 +300,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

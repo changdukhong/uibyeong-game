@@ -32,6 +32,21 @@ const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
 // const cheerSound = document.getElementById('cheerSound');
+const characters = [document.getElementById('samurai'), document.getElementById('commander')];
+const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
+
+setInterval(() => {
+  characters.forEach(char => {
+    const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+    char.classList.add(randomEffect);
+
+    setTimeout(() => {
+      char.classList.remove(randomEffect);
+    }, 600); // 효과 지속 시간
+  });
+}, 3000); // 3초마다 랜덤 효과 발생
+
+
 
 function startGame() {
   score = 0;
@@ -283,6 +298,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

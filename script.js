@@ -64,6 +64,10 @@ function startGame() {
   // // activeSamurai에게만 움직임, 애니메이션, 충돌 로직 적용
   // activeSamurai.classList.add('active');
 
+  // 전광판 다시 보이기
+  const ticker = document.getElementById('ticker');
+  ticker.style.display = 'block';
+
   score = 0;
   clickCount = 0;
   scoreDisplay.textContent = `클릭 수: ${clickCount}`;
@@ -220,6 +224,11 @@ function endGame(message) {
   clickBtn.removeEventListener('click', increaseEnergy);
   gameOver = true;
 
+  
+// 전광판 숨기기
+  const ticker = document.getElementById('ticker');
+  ticker.style.display = 'none';
+
 
   
   const messageBox = document.getElementById('messageBox');
@@ -321,8 +330,9 @@ window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
 
-const tickerText = document.getElementById('ticker-text');
+// const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "의병장님 힘내세요! 사무라이를 반드시 잡을 수 있습니다!";
+
 
 
 

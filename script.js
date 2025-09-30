@@ -79,7 +79,12 @@ function startGame() {
   // const ticker = document.getElementById('ticker');
   // ticker.style.display = 'block';
 
-  assignRandomSamurai();
+  assignRandomSamurai(); // 사무라이 이미지 랜덤 지정
+  activeSamurai = document.getElementById('samurai');
+  activeSamurai.classList.add('active'); // 움직임, 충돌 로직 적용
+  const ticker = document.getElementById('ticker');
+  ticker.style.display = 'block'; // 전광판 다시 보이기
+
   
   score = 0;
   clickCount = 0;
@@ -345,6 +350,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "의병장 할아버지, 힘내세요! 왜장(가등청정) 반드시 잡을 수 있습니다! 14세손: 시현,이안,윤재";
+
 
 
 

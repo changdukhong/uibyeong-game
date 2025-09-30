@@ -36,12 +36,12 @@ const characters = [document.getElementById('samurai'), document.getElementById(
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
 
-const samurais = Array.from(document.querySelectorAll('.samurai'));
-let activeSamurai = null;
+// const samurais = Array.from(document.querySelectorAll('.samurai'));
+// let activeSamurai = null;
 
-function selectRandomSamurai() {
-  activeSamurai = samurais[Math.floor(Math.random() * samurais.length)];
-}
+// function selectRandomSamurai() {
+//   activeSamurai = samurais[Math.floor(Math.random() * samurais.length)];
+// }
 
 
 function applyRandomEffect(element) {
@@ -60,9 +60,9 @@ setInterval(() => {
 
 function startGame() {
 
-  selectRandomSamurai();
-  // activeSamurai에게만 움직임, 애니메이션, 충돌 로직 적용
-  activeSamurai.classList.add('active');
+  // selectRandomSamurai();
+  // // activeSamurai에게만 움직임, 애니메이션, 충돌 로직 적용
+  // activeSamurai.classList.add('active');
 
   score = 0;
   clickCount = 0;
@@ -84,8 +84,8 @@ function startGame() {
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
 
-  // samurai.style.left = `${samuraiPosition}%`;
-  activeSamurai.style.left = `${samuraiPosition}%`;
+  samurai.style.left = `${samuraiPosition}%`;
+  // activeSamurai.style.left = `${samuraiPosition}%`;
 
   uibyeong.style.left = `${uibyeongPosition}%`;
 
@@ -110,10 +110,10 @@ function startGame() {
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
 
-  restartBtn.addEventListener('click', () => {
-    if (activeSamurai) activeSamurai.classList.remove('active');
-    startGame();
-  });
+//  restartBtn.addEventListener('click', () => {
+//    if (activeSamurai) activeSamurai.classList.remove('active');
+//    startGame();
+//  });
 
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
@@ -320,6 +320,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

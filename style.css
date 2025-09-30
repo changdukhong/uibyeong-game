@@ -53,7 +53,27 @@ html, body {
 }
 
 
+#ticker {
+  position: fixed;
+  bottom: -2em; /* 화면 아래 바깥쪽 */
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 9999;
+}
 
+#ticker-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tickerMove 15s linear infinite;
+  font-size: 1.2em;
+  color: #fff; /* 원하는 색상으로 변경 가능 */
+}
+
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
 
 
 @keyframes chargeForward {
@@ -258,6 +278,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

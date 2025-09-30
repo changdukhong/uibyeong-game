@@ -84,7 +84,9 @@ function startGame() {
   restartBtn.style.display = 'none';
   clickBtn.style.display = 'inline-block';
 
-  samurai.style.left = `${samuraiPosition}%`;
+  // samurai.style.left = `${samuraiPosition}%`;
+  activeSamurai.style.left = `${samuraiPosition}%`;
+
   uibyeong.style.left = `${uibyeongPosition}%`;
 
 
@@ -94,11 +96,6 @@ function startGame() {
     cheerSound.play().catch(e => console.warn("PC 오디오 실패:", e));
   }
 
-  restartBtn.addEventListener('click', () => {
-    if (activeSamurai) activeSamurai.classList.remove('active');
-    startGame();
-  });
-  
   setRandomBattlefield(); // ✅ 배경 랜덤 설정
 
   adjustCharacterBottom(); // ✅ 위치 조정
@@ -112,6 +109,11 @@ function startGame() {
   moveInterval = setInterval(moveCharacters, 30);
   energyDecayInterval = setInterval(decayEnergy, 100);
 }
+
+  restartBtn.addEventListener('click', () => {
+    if (activeSamurai) activeSamurai.classList.remove('active');
+    startGame();
+  });
 
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
@@ -318,6 +320,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

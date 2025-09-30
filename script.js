@@ -32,21 +32,6 @@ const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
 // const cheerSound = document.getElementById('cheerSound');
-const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
-const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
-
-function applyRandomEffect(element) {
-  const effect = effects[Math.floor(Math.random() * effects.length)];
-  element.classList.add(effect);
-
-  setTimeout(() => {
-    element.classList.remove(effect);
-  }, 600);
-}
-
-setInterval(() => {
-  characters.forEach(applyRandomEffect);
-}, 3000);
 
 
 
@@ -300,6 +285,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

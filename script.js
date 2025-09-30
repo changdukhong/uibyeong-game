@@ -49,9 +49,15 @@ function assignRandomSamurai() {
     'images/samurai1.png',
     'images/samurai2.png'
   ];
-  const samurai = document.getElementById('samurai');
-  const randomIndex = Math.floor(Math.random() * samuraiImages.length);
-  samurai.src = samuraiImages[randomIndex];
+  const samuraiContainer = document.getElementById('samurai-container');
+  samuraiContainer.innerHTML = ''; // 기존 사무라이 제거
+
+  const img = document.createElement('img');
+  img.src = samuraiImages[Math.floor(Math.random() * samuraiImages.length)];
+  img.id = 'samurai';
+  img.classList.add('active');
+  samuraiContainer.appendChild(img);
+
 }
 
 
@@ -350,6 +356,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "의병장 할아버지, 힘내세요! 왜장(가등청정) 반드시 잡을 수 있습니다! 14세손: 시현,이안,윤재";
+
 
 
 

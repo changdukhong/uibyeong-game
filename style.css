@@ -61,26 +61,32 @@ html, body {
   height: 2em;
   overflow: hidden;
   z-index: 9999;
+  background: transparent;
   pointer-events: none;
 }
 
-#ticker-text {
+#ticker-track {
   display: inline-block;
   white-space: nowrap;
-  font-size: 1.2em;
-  color: #fff;
-  animation: tickerMove 15s linear infinite;
   will-change: transform;
+  animation: tickerMove 15s linear infinite;
+}
+
+#ticker-text {
+  font-size: 1.2em;
+  color: #ffeb3b; /* 밝은 노란색으로 전광판 느낌 */
+  padding-left: 100vw; /* 오른쪽 바깥에서 시작 */
 }
 
 @keyframes tickerMove {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);
   }
 }
+
 
 
 @keyframes chargeForward {
@@ -285,6 +291,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

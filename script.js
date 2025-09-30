@@ -35,6 +35,15 @@ const supporter4 = document.getElementById('supporter4');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
+
+const samurais = Array.from(document.querySelectorAll('.samurai'));
+let activeSamurai = null;
+
+function selectRandomSamurai() {
+  activeSamurai = samurais[Math.floor(Math.random() * samurais.length)];
+}
+
+
 function applyRandomEffect(element) {
   const effect = effects[Math.floor(Math.random() * effects.length)];
   element.classList.add(effect);
@@ -50,6 +59,11 @@ setInterval(() => {
 
 
 function startGame() {
+
+  selectRandomSamurai();
+  // activeSamurai에게만 움직임, 애니메이션, 충돌 로직 적용
+  activeSamurai.classList.add('active');
+
   score = 0;
   clickCount = 0;
   scoreDisplay.textContent = `클릭 수: ${clickCount}`;
@@ -80,6 +94,11 @@ function startGame() {
     cheerSound.play().catch(e => console.warn("PC 오디오 실패:", e));
   }
 
+  restartBtn.addEventListener('click', () => {
+    if (activeSamurai) activeSamurai.classList.remove('active');
+    startGame();
+  });
+  
   setRandomBattlefield(); // ✅ 배경 랜덤 설정
 
   adjustCharacterBottom(); // ✅ 위치 조정
@@ -299,6 +318,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

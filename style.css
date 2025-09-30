@@ -62,20 +62,18 @@ html, body {
   overflow: hidden;
   z-index: 9999;
   background: transparent;
-  pointer-events: none;
 }
 
 #ticker-track {
   display: inline-block;
   white-space: nowrap;
-  will-change: transform;
-  animation: tickerMove 15s linear infinite;
+  animation: tickerMove 20s linear infinite;
 }
 
 #ticker-text {
   font-size: 1.2em;
-  color: #ffeb3b; /* 밝은 노란색으로 전광판 느낌 */
-  padding-left: 100vw; /* 오른쪽 바깥에서 시작 */
+  color: #ffeb3b; /* 밝은 노란색 */
+  padding-left: 100vw;
 }
 
 @keyframes tickerMove {
@@ -291,6 +289,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

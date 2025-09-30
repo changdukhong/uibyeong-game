@@ -53,41 +53,6 @@ html, body {
 }
 
 
-#ticker {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2.5em;
-  overflow: hidden;
-  z-index: 9999;
-  pointer-events: none;
-  background: transparent;
-}
-
-#ticker-track {
-  display: inline-block;
-  white-space: nowrap;
-  animation: tickerMove 20s linear infinite;
-  will-change: transform;
-}
-
-#ticker-text {
-  font-size: 1.2em;
-  color: #ffeb3b; /* 밝은 노란색 */
-  padding-left: 100vw;
-  line-height: 2.5em;
-}
-@keyframes tickerMove {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-
 @keyframes chargeForward {
   0% {
     transform: scale(1) translate(-50%, -50%);
@@ -290,6 +255,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -35,16 +35,23 @@ const supporter4 = document.getElementById('supporter4');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
-setInterval(() => {
-  characters.forEach(char => {
-    const randomEffect = effects[Math.floor(Math.random() * effects.length)];
-    char.classList.add(randomEffect);
+function applyRandomEffect(element) {
+  const effect = effects[Math.floor(Math.random() * effects.length)];
+  element.classList.add(effect);
 
-    setTimeout(() => {
-      char.classList.remove(randomEffect);
-    }, 600); // 효과 지속 시간
-  });
-}, 3000); // 3초마다 랜덤 효과 발생
+  setTimeout(() => {
+    element.classList.remove(effect);
+  }, 600);
+}
+
+const characters = [
+  document.getElementById('samurai'),
+  document.getElementById('commander')
+];
+
+setInterval(() => {
+  characters.forEach(applyRandomEffect);
+}, 3000);
 
 
 
@@ -298,6 +305,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

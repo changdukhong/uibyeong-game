@@ -32,7 +32,7 @@ const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
 // const cheerSound = document.getElementById('cheerSound');
-const characters = [document.getElementById('samurai'), document.getElementById('commander')];
+const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
 setInterval(() => {
@@ -298,6 +298,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

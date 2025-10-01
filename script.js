@@ -17,6 +17,7 @@ let supporterTimeout;
 let lastClickTime = Date.now();
 
 let clickCount = 0;
+let arrowInterval;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -35,6 +36,8 @@ const cheerSound = document.getElementById('cheerSound');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
+const duration = 3000; // 비행 시간 3초
+const vy = 0.8;        // 초기 수직 속도 증가
 
 // const samurais = Array.from(document.querySelectorAll('.samurai'));
 // let activeSamurai = null;
@@ -215,10 +218,7 @@ function startGame() {
 
   // scheduleArrowRain(); // 화살 비 스케줄 시작
   // 🔥 포물선 화살 반복 생성 시작
-  setInterval(() => {
-    spawnParabolicArrow(); // 1발 생성
-  }, 1500); // 1.5초마다 실행
-
+  arrowInterval = setInterval(spawnParabolicArrow, 1500); // 포물선 화살 반복
 
 }
 
@@ -337,6 +337,7 @@ function endGame(message) {
 //  const ticker = document.getElementById('ticker');
 //  ticker.style.display = 'none';
 
+  clearInterval(arrowInterval); // 게임 종료 시 반복 중단
 
   
   const messageBox = document.getElementById('messageBox');
@@ -440,6 +441,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

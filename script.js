@@ -31,7 +31,7 @@ const supporter2 = document.getElementById('supporter2');
 const supporter3 = document.getElementById('supporter3');
 const supporter4 = document.getElementById('supporter4');
 
-// const cheerSound = document.getElementById('cheerSound');
+const cheerSound = document.getElementById('cheerSound');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
@@ -380,6 +380,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

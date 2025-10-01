@@ -61,11 +61,11 @@ const vy = 0.8;        // 초기 수직 속도 증가
 //  samuraiContainer.appendChild(img);
 // }
 
-function spawnParabolicArrow() {
+function spawnAngledArrow() {
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
-  const startX = window.innerWidth / 2 + (Math.random() * 100 - 50);
+  const startX = window.innerWidth / 2;
   const startY = 0;
   arrow.style.left = `${startX}px`;
   arrow.style.top = `${startY}px`;
@@ -73,29 +73,33 @@ function spawnParabolicArrow() {
   document.getElementById('game-area').appendChild(arrow);
 
   let t = 0;
-  const duration = 2000; // 2초
+  const duration = 3000;
   const interval = 20;
-  const gravity = 0.002; // 중력 가속도
-  const vx = Math.random() > 0.5 ? 1.5 : -1.5; // 좌우 방향
-  const vy = 0.5; // 초기 수직 속도
+
+  // 🔥 랜덤 각도 -45도 ~ +45도
+  const angleDeg = Math.random() * 90 - 45;
+  const angleRad = angleDeg * (Math.PI / 180);
+  const speed = 2.5;
+
+  const vx = speed * Math.cos(angleRad);
+  const vy = speed * Math.sin(angleRad);
+  const gravity = 0.002;
 
   const startTime = Date.now();
 
   const motion = setInterval(() => {
     t = Date.now() - startTime;
-    const progress = t / duration;
-
     const x = startX + vx * t;
     const y = startY + vy * t + gravity * t * t;
 
     arrow.style.left = `${x}px`;
     arrow.style.top = `${y}px`;
 
-    // 회전 각도 조정 (촉이 아래로 향하도록)
+    // 🔄 회전 각도 조정
     const angle = Math.atan2(2 * gravity * t + vy, vx) * (180 / Math.PI);
     arrow.style.transform = `rotate(${angle}deg)`;
 
-    if (progress >= 1.2) {
+    if (t >= duration) {
       clearInterval(motion);
       arrow.remove();
     }
@@ -218,7 +222,7 @@ function startGame() {
 
   // scheduleArrowRain(); // 화살 비 스케줄 시작
   // 🔥 포물선 화살 반복 생성 시작
-  arrowInterval = setInterval(spawnParabolicArrow, 1500); // 포물선 화살 반복
+  arrowInterval = setInterval(spawnAngledArrow, 1500); // 포물선 화살 반복
 
 }
 
@@ -441,6 +445,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

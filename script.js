@@ -43,7 +43,6 @@ const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 //   activeSamurai = samurais[Math.floor(Math.random() * samurais.length)];
 // }
 
-
 // function assignRandomSamurai() {
 //  const samuraiImages = [
 //    'images/samurai1.png',
@@ -58,6 +57,22 @@ const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 //  img.classList.add('active');
 //  samuraiContainer.appendChild(img);
 // }
+
+
+const samuraiImages = [
+  'images/samurai1.png',
+  'images/samurai2.png'
+];
+
+let samuraiToggle = 0;
+
+function assignAlternatingSamurai() {
+  const samurai = document.getElementById('samurai');
+  if (!samurai) return;
+
+  samurai.style.backgroundImage = `url('${samuraiImages[samuraiToggle]}')`;
+  samuraiToggle = (samuraiToggle + 1) % samuraiImages.length;
+}
 
 
 function applyRandomEffect(element) {
@@ -90,6 +105,7 @@ function startGame() {
   // const ticker = document.getElementById('ticker');
   // ticker.style.display = 'block'; // 전광판 다시 보이기
 
+  assignAlternatingSamurai();
   
   score = 0;
   clickCount = 0;
@@ -355,6 +371,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "의병장 할아버지, 힘내세요! 왜장(가등청정) 반드시 잡을 수 있어요! 14세손: 시현,이안,윤재";
+
 
 
 

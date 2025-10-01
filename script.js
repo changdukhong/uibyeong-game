@@ -37,11 +37,11 @@ const characters = [document.getElementById('samurai'), document.getElementById(
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
 const duration = 3000; // 비행 시간 3초
-const vy = 0.8;        // 초기 수직 속도 증가
-const angleDeg = Math.random() * 180 + 90; // 🔥 90° ~ 270°
-
+// const vy = 0.8;        // 초기 수직 속도 증가
 const speed = 0.8;       // 속도 줄이기
 const gravity = 0.005;   // 중력 증가
+
+const angleDeg = Math.random() * 180 + 90; // 🔥 90° ~ 270°
 const angleRad = angleDeg * (Math.PI / 180);
 const vx = speed * Math.cos(angleRad);
 const vy = speed * Math.sin(angleRad);
@@ -452,6 +452,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

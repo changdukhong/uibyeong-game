@@ -104,16 +104,16 @@ html, body {
 
 @keyframes arrowRain {
   0%   { top: 0; opacity: 1; }
-  100% { top: 100vh; opacity: 0; }
+  100% { top: 100vh; opacity: 0.3; }
 }
 
 .arrow {
   position: absolute;
-  width: 40px;
-  height: 10px;
+  width: 80px;
+  height: 20px;
   background: url('images/arrow.png') no-repeat center;
   background-size: contain;
-  animation: arrowRain 1.2s linear forwards;
+  animation: arrowRain 2.5s linear forwards;
   z-index: 100;
   pointer-events: none;
   transform: rotate(90deg); /* 오른쪽 향한 화살을 아래로 돌림 */
@@ -310,6 +310,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

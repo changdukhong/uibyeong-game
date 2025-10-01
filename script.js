@@ -370,7 +370,8 @@ window.addEventListener('resize', adjustCharacterBottom);
 document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
-tickerText.textContent = "의병장 할아버지, 힘내세요! 왜장(가등청정) 반드시 잡을 수 있어요! 14세손: 시현,이안,윤재";
+tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

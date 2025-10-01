@@ -58,21 +58,45 @@ const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 //  samuraiContainer.appendChild(img);
 // }
 
-function rainArrows(count = 20) {
-  for (let i = 0; i < count; i++) {
-    const arrow = document.createElement('div');
-    arrow.classList.add('arrow');
+function spawnParabolicArrow() {
+  const arrow = document.createElement('div');
+  arrow.classList.add('arrow');
 
-    // 상단 중앙 좁은 영역에서 시작
-    const startX = window.innerWidth / 2 + (Math.random() * 100 - 50); // 중앙 ±50px
-    arrow.style.left = `${startX}px`;
-    arrow.style.top = `0px`;
+  const startX = window.innerWidth / 2 + (Math.random() * 100 - 50);
+  const startY = 0;
+  arrow.style.left = `${startX}px`;
+  arrow.style.top = `${startY}px`;
 
-    document.getElementById('game-area').appendChild(arrow);
+  document.getElementById('game-area').appendChild(arrow);
 
-    // 일정 시간 후 제거
-    setTimeout(() => arrow.remove(), 3000);
-  }
+  let t = 0;
+  const duration = 2000; // 2초
+  const interval = 20;
+  const gravity = 0.002; // 중력 가속도
+  const vx = Math.random() > 0.5 ? 1.5 : -1.5; // 좌우 방향
+  const vy = 0.5; // 초기 수직 속도
+
+  const startTime = Date.now();
+
+  const motion = setInterval(() => {
+    t = Date.now() - startTime;
+    const progress = t / duration;
+
+    const x = startX + vx * t;
+    const y = startY + vy * t + gravity * t * t;
+
+    arrow.style.left = `${x}px`;
+    arrow.style.top = `${y}px`;
+
+    // 회전 각도 조정 (촉이 아래로 향하도록)
+    const angle = Math.atan2(2 * gravity * t + vy, vx) * (180 / Math.PI);
+    arrow.style.transform = `rotate(${angle}deg)`;
+
+    if (progress >= 1.2) {
+      clearInterval(motion);
+      arrow.remove();
+    }
+  }, interval);
 }
 
 function scheduleArrowRain() {
@@ -189,7 +213,12 @@ function startGame() {
   moveInterval = setInterval(moveCharacters, 30);
   energyDecayInterval = setInterval(decayEnergy, 100);
 
-  scheduleArrowRain(); // 화살 비 스케줄 시작
+  // scheduleArrowRain(); // 화살 비 스케줄 시작
+  // 🔥 포물선 화살 반복 생성 시작
+  setInterval(() => {
+    spawnParabolicArrow(); // 1발 생성
+  }, 1500); // 1.5초마다 실행
+
 
 }
 
@@ -411,6 +440,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

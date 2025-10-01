@@ -58,6 +58,34 @@ const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 //  samuraiContainer.appendChild(img);
 // }
 
+function rainArrows(count = 20) {
+  for (let i = 0; i < count; i++) {
+    const arrow = document.createElement('div');
+    arrow.classList.add('arrow');
+
+    // 상단 중앙 좁은 영역에서 시작
+    const startX = window.innerWidth / 2 + (Math.random() * 100 - 50); // 중앙 ±50px
+    arrow.style.left = `${startX}px`;
+    arrow.style.top = `0px`;
+
+    document.getElementById('game-area').appendChild(arrow);
+
+    // 일정 시간 후 제거
+    setTimeout(() => arrow.remove(), 1500);
+  }
+}
+
+function scheduleArrowRain() {
+  const rainTimes = [5000, 15000, 25000]; // 5초, 15초, 25초에 실행
+
+  rainTimes.forEach(time => {
+    setTimeout(() => {
+      rainArrows(20); // 20발씩 비처럼
+    }, time);
+  });
+}
+
+
 function speakTickerMessage() {
   const tickerText = document.getElementById('ticker-text').textContent;
   const utterance = new SpeechSynthesisUtterance(tickerText);
@@ -160,6 +188,9 @@ function startGame() {
   timerInterval = setInterval(updateTimer, 1000);
   moveInterval = setInterval(moveCharacters, 30);
   energyDecayInterval = setInterval(decayEnergy, 100);
+
+  scheduleArrowRain(); // 화살 비 스케줄 시작
+
 }
 
 //  restartBtn.addEventListener('click', () => {
@@ -380,6 +411,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

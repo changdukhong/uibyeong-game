@@ -167,22 +167,20 @@ function startGame() {
 //    startGame();
 //  });
 
+
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
 
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-  if (isMobile) {
-    // 모바일은 사용자 클릭 시 한 번만 재생
-    if (cheerSound.paused) {
-      cheerSound.currentTime = 0;
-      cheerSound.play().catch(e => console.warn("모바일 오디오 실패:", e));
-    }
-  } else {
-    // PC는 startGame에서 재생하고 클릭 시 건드리지 않음
-    // 아무 것도 하지 않음
+  if (cheerSound.paused) {
+    cheerSound.currentTime = 0;
+    cheerSound.play().catch(e => console.warn("오디오 재생 실패:", e));
   }
+
+  startGame(); // 게임 시작은 클릭 이후
 });
+
 
 function increaseEnergy() {
   if (gameOver) return;
@@ -376,10 +374,15 @@ function setRandomBattlefield() {
 
 window.addEventListener('resize', adjustCharacterBottom);
 
-document.addEventListener('DOMContentLoaded', startGame);
+// document.addEventListener('DOMContentLoaded', startGame);
+document.addEventListener('DOMContentLoaded', () => {
+  // 오디오 preload, 이미지 preload 등 초기 준비만
+  cheerSound.load();
+});
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 추격하자... 와! 와! 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아야 해요! ";
+
 
 
 

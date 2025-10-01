@@ -116,6 +116,7 @@ html, body {
   transform: rotate(45deg); /* 초기 각도 */
   pointer-events: none;
   z-index: 100;
+  filter: brightness(1.5) drop-shadow(0 0 4px rgba(255,255,255,0.5));
 }
 
 #samurai.charge {
@@ -309,6 +310,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

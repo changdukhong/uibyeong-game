@@ -109,7 +109,7 @@ function spawnAngledArrow() {
   document.getElementById('game-area').appendChild(arrow);
 
   const startTime = Date.now();
-  const duration = 3000;
+  const duration = 300;
   const interval = 20;
 
   // 💾 화살 높이 저장
@@ -497,6 +497,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

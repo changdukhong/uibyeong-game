@@ -119,19 +119,21 @@ if (t >= duration) {
   const isNearBottom = y >= screenHeight - 40;
   const isMidAngle = angle >= 45 && angle <= 135;
 
-  if (isNearBottom && isMidAngle) {
-    const stuckArrow = document.createElement('div');
-    stuckArrow.classList.add('arrow');
-    stuckArrow.style.left = `${x}px`;
-    stuckArrow.style.top = `${screenHeight - arrowHeight}px`; // ✅ 안전하게 위치 고정
-    stuckArrow.style.transform = `rotate(${angle}deg)`;
-    stuckArrow.style.position = 'absolute';
-    stuckArrow.style.zIndex = 101;
+const arrowHeight = arrow.offsetHeight;
 
-    document.getElementById('game-area').appendChild(stuckArrow);
-  }
+if (isNearBottom && isMidAngle) {
+  const stuckArrow = document.createElement('div');
+  stuckArrow.classList.add('arrow');
+  stuckArrow.style.left = `${x}px`;
+  stuckArrow.style.top = `${y}px`; // 또는 screenHeight - arrowHeight
+  stuckArrow.style.transform = `rotate(${angle}deg)`;
+  stuckArrow.style.position = 'absolute';
+  stuckArrow.style.zIndex = 101;
 
-  arrow.remove(); // ✅ 원래 화살 제거는 마지막에
+  document.getElementById('game-area').appendChild(stuckArrow);
+}
+
+arrow.remove(); // 제거는 마지막에
 }
   }, interval);
 }
@@ -476,6 +478,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

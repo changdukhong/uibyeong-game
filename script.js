@@ -39,7 +39,7 @@ const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 // const duration = 3000; // 비행 시간 3초
 // const vy = 0.8;        // 초기 수직 속도 증가
 const speed = 1.2;       // 속도 줄이기
-const gravity = 0.005;   // 중력 증가
+const gravity = 0.002;   // 중력 증가
 
 // const angleDeg = Math.random() * 180 + 90; // 🔥 90° ~ 270°
 // const angleRad = angleDeg * (Math.PI / 180);
@@ -90,85 +90,51 @@ function testStuckArrow() {
 function spawnAngledArrow() {
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
-
   const startX = window.innerWidth / 2;
   const startY = 0;
-
   const angleDeg = Math.random() * 180;
   const angleRad = angleDeg * (Math.PI / 180);
-
   const speed = 0.6;
-  const gravity = 0.0015;
-  const maxY = 700;
-  const clampedY = Math.min(y, maxY);
-  arrow.style.top = `${clampedY}px`;
-
-
+  const gravity = 0.002;
   const vx = speed * Math.cos(angleRad);
   const vy = speed * Math.sin(angleRad);
-
   const initialAngle = Math.atan2(vy, vx) * (180 / Math.PI);
   arrow.style.transform = `rotate(${initialAngle}deg)`;
   arrow.style.left = `${startX}px`;
   arrow.style.top = `${startY}px`;
-
   document.getElementById('game-area').appendChild(arrow);
-
   const startTime = Date.now();
-  const duration = 1000;
+  const duration = 3000;
   const interval = 20;
-
   // 💾 화살 높이 저장
   const arrowHeight = arrow.offsetHeight;
-
   const motion = setInterval(() => {
     const t = Date.now() - startTime;
     const x = startX + vx * t;
     const y = startY + vy * t + gravity * t * t;
-
     arrow.style.left = `${x}px`;
     arrow.style.top = `${y}px`;
-
     const angle = Math.atan2(vy + gravity * t * 2, vx) * (180 / Math.PI);
     arrow.style.transform = `rotate(${angle}deg)`;
-
     
 if (t >= duration) {
   clearInterval(motion);
-
-  const screenHeight = 654; // 배경 이미지 고정 높이
+  // const screenHeight = window.innerHeight;
+  const screenHeight = 654;
   const isNearBottom = y >= screenHeight - 40;
   const isMidAngle = angle >= 45 && angle <= 135;
-
-  // 📊 조건 평가 로그 출력
-  console.log(
-  '📊 조건 평가:',
-  '\n- y:', y.toFixed(2),
-  '\n- angle:', angle.toFixed(2),
-  '\n- screenHeight:', screenHeight,
-  '\n- isNearBottom:', isNearBottom,
-  '\n- isMidAngle:', isMidAngle,
-  '\n👉 조건 통과:', isNearBottom && isMidAngle,
-  '\n⚠️ y가 너무 크면 화면 밖으로 꽂힐 수 있음!'
-);
-
-
   if (isNearBottom && isMidAngle) {
     const stuckArrow = document.createElement('div');
     stuckArrow.classList.add('arrow');
     stuckArrow.style.left = `${x}px`;
-    stuckArrow.style.top = `${screenHeight - arrowHeight}px`;
+    stuckArrow.style.top = `${screenHeight - arrowHeight}px`; // 또는 screenHeight - arrowHeight
     stuckArrow.style.transform = `rotate(${angle}deg)`;
     stuckArrow.style.position = 'absolute';
     stuckArrow.style.zIndex = 101;
-
     document.getElementById('game-area').appendChild(stuckArrow);
   }
-
   arrow.remove();
-}
-    
-  }, interval);
+}  }, interval);
 }
 
 
@@ -513,6 +479,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아 주세요! ";
+
 
 
 

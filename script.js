@@ -68,7 +68,22 @@ const gravity = 0.005;   // 중력 증가
 //  samuraiContainer.appendChild(img);
 // }
 
+function testStuckArrow() {
+  const arrow = document.createElement('div');
+  arrow.classList.add('arrow');
 
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight - 50; // 하단 근접 위치
+  const angle = 90; // 수직 아래 방향
+
+  arrow.style.left = `${x}px`;
+  arrow.style.top = `${y}px`;
+  arrow.style.transform = `rotate(${angle}deg)`;
+  arrow.style.position = 'absolute';
+  arrow.style.zIndex = 101;
+
+  document.getElementById('game-area').appendChild(arrow);
+}
 
 function spawnAngledArrow() {
   const arrow = document.createElement('div');
@@ -490,6 +505,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

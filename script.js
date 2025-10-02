@@ -36,6 +36,13 @@ const cheerSound = document.getElementById('cheerSound');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
+const tickerText = document.getElementById('ticker-text');
+const cheeringTicker = "장군! 적군이 도망갑니다. 적장을 잡으러 가자...,  와!,  와!,  의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
+const standbyTicker = "1592년 발발 임진/정유 전쟁 시 척제공 장몽기 의병장께서 활동하신 전투장면을 배경으로 한 감란의병 게임 시뮬레이션입니다.";
+
+
+// const duration = 3000; // 비행 시간 3초
+// const vy = 0.8;        // 초기 수직 속도 증가
 const speed = 1.2;       // 속도 줄이기
 const gravity = 0.002;   // 중력 증가
 
@@ -109,18 +116,6 @@ if (t >= duration) {
 }
 
 
-
-function scheduleArrowRain() {
-  const rainTimes = [5000, 15000, 25000]; // 5초, 15초, 25초에 실행
-
-  rainTimes.forEach(time => {
-    setTimeout(() => {
-      rainArrows(20); // 20발씩 비처럼
-    }, time);
-  });
-}
-
-
 function speakTickerMessage() {
   const tickerText = document.getElementById('ticker-text').textContent;
   const utterance = new SpeechSynthesisUtterance(tickerText);
@@ -163,7 +158,8 @@ setInterval(() => {
 function startGame() {
 
   assignAlternatingSamurai();
-  // speakTickerMessage();
+  tickerText.textContent = cheeringTicker;
+
   
   score = 0;
   clickCount = 0;
@@ -186,7 +182,6 @@ function startGame() {
   clickBtn.style.display = 'inline-block';
 
   samurai.style.left = `${samuraiPosition}%`;
-  // activeSamurai.style.left = `${samuraiPosition}%`;
 
   uibyeong.style.left = `${uibyeongPosition}%`;
 
@@ -213,7 +208,9 @@ function startGame() {
   // 🔥 포물선 화살 반복 생성 시작
   arrowInterval = setInterval(spawnAngledArrow, 1500); // 포물선 화살 반복
 
+
 }
+
 
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
@@ -312,6 +309,9 @@ function checkCollision() {
 }
 
 function endGame(message) {
+
+  tickerText.textContent = standbyTicker;
+
   document.body.removeEventListener('click', increaseEnergy);
   clearInterval(timerInterval);
   clearInterval(moveInterval);
@@ -357,7 +357,12 @@ function endGame(message) {
 
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
+
+  // document.getElementById('game-area').innerHTML = '';
+
 }
+
+
 
 function showSupporters() {
   supporter1.style.display = 'block';
@@ -423,8 +428,6 @@ window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
 
-const tickerText = document.getElementById('ticker-text');
-tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
 
 
 

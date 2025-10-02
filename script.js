@@ -137,29 +137,16 @@ if (t >= duration) {
   if (isNearBottom && isMidAngle) {
     const stuckArrow = document.createElement('div');
     stuckArrow.classList.add('arrow');
-
-    // ✅ 회전 기준 보정
-    stuckArrow.style.transformOrigin = 'center bottom';
-
-    // ✅ 위치 고정
     stuckArrow.style.left = `${x}px`;
-    stuckArrow.style.top = `${y}px`; // 실제 도달 위치 사용
-
-    // ✅ 회전 유지
+    stuckArrow.style.top = `${y}px`; // 또는 screenHeight - arrowHeight
     stuckArrow.style.transform = `rotate(${angle}deg)`;
     stuckArrow.style.position = 'absolute';
     stuckArrow.style.zIndex = 101;
 
-    // ✅ DOM에 추가
     document.getElementById('game-area').appendChild(stuckArrow);
-
-    // ✅ 제거는 다음 프레임으로 넘김 (렌더링 보장)
-    setTimeout(() => {
-      arrow.remove();
-    }, 0);
-  } else {
-    arrow.remove(); // 조건 불충족 시 즉시 제거
   }
+
+  arrow.remove();
 }
 
   }, interval);
@@ -505,6 +492,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

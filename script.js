@@ -98,7 +98,11 @@ function spawnAngledArrow() {
   const angleRad = angleDeg * (Math.PI / 180);
 
   const speed = 0.6;
-  const gravity = 0.002;
+  const gravity = 0.0015;
+  const maxY = 700;
+  const clampedY = Math.min(y, maxY);
+  arrow.style.top = `${clampedY}px`;
+
 
   const vx = speed * Math.cos(angleRad);
   const vy = speed * Math.sin(angleRad);
@@ -111,7 +115,7 @@ function spawnAngledArrow() {
   document.getElementById('game-area').appendChild(arrow);
 
   const startTime = Date.now();
-  const duration = 3000;
+  const duration = 1000;
   const interval = 20;
 
   // 💾 화살 높이 저장
@@ -138,14 +142,16 @@ if (t >= duration) {
 
   // 📊 조건 평가 로그 출력
   console.log(
-    '📊 조건 평가:',
-    '\n- y:', y.toFixed(2),
-    '\n- angle:', angle.toFixed(2),
-    '\n- screenHeight:', screenHeight,
-    '\n- isNearBottom:', isNearBottom,
-    '\n- isMidAngle:', isMidAngle,
-    '\n👉 조건 통과:', isNearBottom && isMidAngle
-  );
+  '📊 조건 평가:',
+  '\n- y:', y.toFixed(2),
+  '\n- angle:', angle.toFixed(2),
+  '\n- screenHeight:', screenHeight,
+  '\n- isNearBottom:', isNearBottom,
+  '\n- isMidAngle:', isMidAngle,
+  '\n👉 조건 통과:', isNearBottom && isMidAngle,
+  '\n⚠️ y가 너무 크면 화면 밖으로 꽂힐 수 있음!'
+);
+
 
   if (isNearBottom && isMidAngle) {
     const stuckArrow = document.createElement('div');
@@ -507,6 +513,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아 주세요! ";
+
 
 
 

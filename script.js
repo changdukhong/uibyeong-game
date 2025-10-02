@@ -85,6 +85,8 @@ function testStuckArrow() {
   document.getElementById('game-area').appendChild(arrow);
 }
 
+
+
 function spawnAngledArrow() {
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
@@ -92,6 +94,7 @@ function spawnAngledArrow() {
   const startX = window.innerWidth / 2;
   const startY = 0;
 
+  // 🔥 랜덤 각도: 0° ~ 180° (이미지 기준 오른쪽)
   const angleDeg = Math.random() * 180;
   const angleRad = angleDeg * (Math.PI / 180);
 
@@ -101,15 +104,20 @@ function spawnAngledArrow() {
   const vx = speed * Math.cos(angleRad);
   const vy = speed * Math.sin(angleRad);
 
+  // 🔄 초기 회전 각도 계산 (촉 방향과 궤도 일치)
   const initialAngle = Math.atan2(vy, vx) * (180 / Math.PI);
   arrow.style.transform = `rotate(${initialAngle}deg)`;
+
+  // 🔧 초기 위치 설정
   arrow.style.left = `${startX}px`;
   arrow.style.top = `${startY}px`;
 
+  // 🔧 DOM에 추가 (회전 적용 후)
   document.getElementById('game-area').appendChild(arrow);
-  const arrowHeight = arrow.offsetHeight;
 
   const startTime = Date.now();
+  const duration = 3000;
+  const interval = 20;
 
   const motion = setInterval(() => {
     const t = Date.now() - startTime;
@@ -119,36 +127,17 @@ function spawnAngledArrow() {
     arrow.style.left = `${x}px`;
     arrow.style.top = `${y}px`;
 
+    // 🔄 실시간 회전 업데이트 (촉 방향 유지)
     const angle = Math.atan2(vy + gravity * t * 2, vx) * (180 / Math.PI);
     arrow.style.transform = `rotate(${angle}deg)`;
 
-    // const screenHeight = window.innerHeight;
-    // const isNearBottom = y >= screenHeight - 40;
-
-    const bgHeight = document.getElementById('background-image').offsetHeight;
-    const isNearBottom = y >= bgHeight - 40;
-    
-    const isMidAngle = angle >= 45 && angle <= 135;
-
-    // console.log('bgHeight:', bgHeight, 'isNearBottom:', isNearBottom, 'isMidAngle:', isMidAngle);
-    
-    if (isNearBottom && isMidAngle) {
-
-      
-      const stuckArrow = document.createElement('div');
-      stuckArrow.classList.add('arrow');
-      stuckArrow.style.left = `${x}px`;
-      stuckArrow.style.top = `${screenHeight - arrowHeight}px`;
-      stuckArrow.style.transform = `rotate(${angle}deg)`;
-      stuckArrow.style.position = 'absolute';
-      stuckArrow.style.zIndex = 101;
-
-      document.getElementById('game-area').appendChild(stuckArrow);
-      arrow.remove();
+    if (t >= duration) {
       clearInterval(motion);
+      arrow.remove();
     }
-  }, 20);
+  }, interval);
 }
+
 
 
 function scheduleArrowRain() {
@@ -494,6 +483,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

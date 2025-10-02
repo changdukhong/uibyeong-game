@@ -488,9 +488,6 @@ function setRandomBattlefield() {
   const randomIndex = Math.floor(Math.random() * backgrounds.length);
   battlefield.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
 
-  // const bgImage = document.getElementById('background-image');
-  // bgImage.src = backgrounds[randomIndex];
-
 }
 
 window.addEventListener('resize', adjustCharacterBottom);
@@ -499,6 +496,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

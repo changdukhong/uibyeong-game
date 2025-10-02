@@ -36,55 +36,8 @@ const cheerSound = document.getElementById('cheerSound');
 const characters = [document.getElementById('samurai'), document.getElementById('uibyeong')];
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
-// const duration = 3000; // 비행 시간 3초
-// const vy = 0.8;        // 초기 수직 속도 증가
 const speed = 1.2;       // 속도 줄이기
 const gravity = 0.002;   // 중력 증가
-
-// const angleDeg = Math.random() * 180 + 90; // 🔥 90° ~ 270°
-// const angleRad = angleDeg * (Math.PI / 180);
-// const vx = speed * Math.cos(angleRad);
-// const vy = speed * Math.sin(angleRad);
-
-// const samurais = Array.from(document.querySelectorAll('.samurai'));
-// let activeSamurai = null;
-
-// function selectRandomSamurai() {
-//   activeSamurai = samurais[Math.floor(Math.random() * samurais.length)];
-// }
-
-// function assignRandomSamurai() {
-//  const samuraiImages = [
-//    'images/samurai1.png',
-//    'images/samurai2.png'
-//  ];
-//  const samuraiContainer = document.getElementById('samurai-container');
-//  samuraiContainer.innerHTML = ''; // 기존 사무라이 제거
-
-//  const img = document.createElement('img');
-//  img.src = samuraiImages[Math.floor(Math.random() * samuraiImages.length)];
-//  img.id = 'samurai';
-//  img.classList.add('active');
-//  samuraiContainer.appendChild(img);
-// }
-
-function testStuckArrow() {
-  const arrow = document.createElement('div');
-  arrow.classList.add('arrow');
-
-  const x = window.innerWidth / 2;
-  const y = window.innerHeight - 50; // 하단 근접 위치
-  const angle = 90; // 수직 아래 방향
-
-  arrow.style.left = `${x}px`;
-  arrow.style.top = `${y}px`;
-  arrow.style.transform = `rotate(${angle}deg)`;
-  arrow.style.position = 'absolute';
-  arrow.style.zIndex = 101;
-
-  document.getElementById('game-area').appendChild(arrow);
-}
-
 
 
 function spawnAngledArrow() {
@@ -209,20 +162,6 @@ setInterval(() => {
 
 function startGame() {
 
-  // selectRandomSamurai();
-  // // activeSamurai에게만 움직임, 애니메이션, 충돌 로직 적용
-  // activeSamurai.classList.add('active');
-
-  // 전광판 다시 보이기
-  // const ticker = document.getElementById('ticker');
-  // ticker.style.display = 'block';
-
-  // assignRandomSamurai(); // 사무라이 이미지 랜덤 지정
-  // activeSamurai = document.getElementById('samurai');
-  // activeSamurai.classList.add('active'); // 움직임, 충돌 로직 적용
-  // const ticker = document.getElementById('ticker');
-  // ticker.style.display = 'block'; // 전광판 다시 보이기
-
   assignAlternatingSamurai();
   // speakTickerMessage();
   
@@ -271,17 +210,10 @@ function startGame() {
   moveInterval = setInterval(moveCharacters, 30);
   energyDecayInterval = setInterval(decayEnergy, 100);
 
-  // scheduleArrowRain(); // 화살 비 스케줄 시작
   // 🔥 포물선 화살 반복 생성 시작
   arrowInterval = setInterval(spawnAngledArrow, 1500); // 포물선 화살 반복
 
 }
-
-//  restartBtn.addEventListener('click', () => {
-//    if (activeSamurai) activeSamurai.classList.remove('active');
-//    startGame();
-//  });
-
 
 clickBtn.addEventListener('click', () => {
   if (gameOver) return;
@@ -388,10 +320,6 @@ function endGame(message) {
   gameOver = true;
 
   
-// 전광판 숨기기
-//  const ticker = document.getElementById('ticker');
-//  ticker.style.display = 'none';
-
   clearInterval(arrowInterval); // 게임 종료 시 반복 중단
 
   
@@ -496,7 +424,8 @@ window.addEventListener('resize', adjustCharacterBottom);
 document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
-tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아 주세요! ";
+tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
+
 
 
 

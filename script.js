@@ -128,6 +128,21 @@ function spawnAngledArrow() {
     const angle = Math.atan2(vy + gravity * t * 2, vx) * (180 / Math.PI);
     arrow.style.transform = `rotate(${angle}deg)`;
 
+const bgHeight = document.getElementById('game-area').offsetHeight;
+const isNearBottom = y >= bgHeight - 40;
+const isMidAngle = angle >= 45 && angle <= 135;
+
+console.log(
+  '📊 조건 평가:',
+  '\n- y:', y,
+  '\n- angle:', angle.toFixed(2),
+  '\n- 배경 높이:', bgHeight,
+  '\n- isNearBottom:', isNearBottom,
+  '\n- isMidAngle:', isMidAngle,
+  '\n👉 조건 통과:', isNearBottom && isMidAngle
+);
+
+    
 if (t >= duration) {
   clearInterval(motion);
 
@@ -499,6 +514,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

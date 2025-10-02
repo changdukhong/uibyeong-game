@@ -130,18 +130,23 @@ if (t >= duration) {
   clearInterval(motion);
 
   const screenHeight = window.innerHeight;
-  // const arrowHeight = arrow.offsetHeight;
-  const isNearBottom = y >= screenHeight - 40;
-  const isMidAngle = angle >= 45 && angle <= 135;
+  const isNearBottom = y >= screenHeight - 120;
+  const isMidAngle = angle >= 30 && angle <= 150;
+
+  console.log('꽂힘 조건 검사:', { y, angle, isNearBottom, isMidAngle });
 
   if (isNearBottom && isMidAngle) {
     const stuckArrow = document.createElement('div');
     stuckArrow.classList.add('arrow');
     stuckArrow.style.left = `${x}px`;
-    stuckArrow.style.top = `${screenHeight - arrowHeight}px`; // 또는 screenHeight - arrowHeight
+    stuckArrow.style.top = `${screenHeight - arrowHeight}px`;
     stuckArrow.style.transform = `rotate(${angle}deg)`;
     stuckArrow.style.position = 'absolute';
     stuckArrow.style.zIndex = 101;
+
+    // 시각 확인용
+    stuckArrow.style.border = '2px solid red';
+    stuckArrow.style.backgroundColor = 'rgba(255,0,0,0.2)';
 
     document.getElementById('game-area').appendChild(stuckArrow);
   }
@@ -492,6 +497,7 @@ document.addEventListener('DOMContentLoaded', startGame);
 
 const tickerText = document.getElementById('ticker-text');
 tickerText.textContent = "장군! 적군이 도망갑니다. 적장을 잡으러 가자..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(가등청정)을 반드시 잡아 주세요! ";
+
 
 
 

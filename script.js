@@ -88,29 +88,31 @@ function spawnAngledArrow() {
     const angle = Math.atan2(vy + gravity * t * 2, vx) * (180 / Math.PI);
     arrow.style.transform = `rotate(${angle}deg)`;
 
-    
-if (t >= duration) {
-  clearInterval(motion);
+    // console.log('화살 각도:', angle); // 확인용
 
-  // const screenHeight = window.innerHeight;
-  const screenHeight = 985;
-  const isNearBottom = y >= screenHeight - 40;
-  const isMidAngle = angle >= 45 && angle <= 135;
+    if (t >= duration) {
+      clearInterval(motion);
 
-  if (isNearBottom && isMidAngle) {
-    const stuckArrow = document.createElement('div');
-    stuckArrow.classList.add('arrow');
-    stuckArrow.style.left = `${x}px`;
-    stuckArrow.style.top = `${screenHeight - arrowHeight}px`; // 또는 screenHeight - arrowHeight
-    stuckArrow.style.transform = `rotate(${angle}deg)`;
-    stuckArrow.style.position = 'absolute';
-    stuckArrow.style.zIndex = 101;
+      // const screenHeight = window.innerHeight;
+      const screenHeight = 657;
+      const isNearBottom = y >= screenHeight - 80;
+      const isMidAngle = angle >= 45 && angle <= 135;
 
-    document.getElementById('game-area').appendChild(stuckArrow);
-  }
+      if (isNearBottom && isMidAngle) {
+        const stuckArrow = document.createElement('div');
+        stuckArrow.classList.add('arrow');
+        stuckArrow.style.left = `${x}px`;
+        const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
+        stuckArrow.style.top = `${screenHeight - arrowHeight + offset}px`;
+        stuckArrow.style.transform = `rotate(${angle}deg)`;
+        stuckArrow.style.position = 'absolute';
+        stuckArrow.style.zIndex = 101;
 
-  arrow.remove();
-}
+        document.getElementById('game-area').appendChild(stuckArrow);
+      }
+
+      arrow.remove();
+    }
 
   }, interval);
 }
@@ -119,11 +121,23 @@ if (t >= duration) {
 function speakTickerMessage() {
   const tickerText = document.getElementById('ticker-text').textContent;
   const utterance = new SpeechSynthesisUtterance(tickerText);
-  utterance.lang = 'ko-KR'; // 한국어 설정
-  utterance.rate = 1;       // 말하는 속도 (0.1 ~ 10)
-  utterance.pitch = 1;      // 음성 높낮이 (0 ~ 2)
+  utterance.lang = 'ko-KR';
+  utterance.rate = 1.4;
+  utterance.pitch = 1.2;
+  utterance.volume = 1;
+
+  // ✅ 남성 목소리 선택
+  const voices = speechSynthesis.getVoices();
+  const maleVoice = voices.find(v => v.lang === 'ko-KR' && v.name.includes('Male'));
+
+  if (maleVoice) {
+    utterance.voice = maleVoice;
+  }
+
   speechSynthesis.speak(utterance);
 }
+
+
 
 const samuraiImages = [
   'images/samurai1.png',
@@ -158,7 +172,14 @@ setInterval(() => {
 function startGame() {
 
   assignAlternatingSamurai();
+
+  // ✅ 기존 화살 제거
+  const existingArrows = document.querySelectorAll('.arrow');
+  existingArrows.forEach(arrow => arrow.remove());
+
   tickerText.textContent = cheeringTicker;
+  // speakTickerMessage(); // 응원 메시지를 음성으로 출력
+
 
   
   score = 0;
@@ -358,7 +379,6 @@ function endGame(message) {
   restartBtn.style.display = 'inline-block';
   clickBtn.style.display = 'none';
 
-  // document.getElementById('game-area').innerHTML = '';
 
 }
 
@@ -427,6 +447,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

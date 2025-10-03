@@ -1,4 +1,4 @@
-let score = 0;
+flet score = 0;
 let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
@@ -37,7 +37,7 @@ const characters = [document.getElementById('samurai'), document.getElementById(
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
 const tickerText = document.getElementById('ticker-text');
-const cheeringTicker = "장군! 적군이 도망갑니다. 적장을 잡으러 가자...,  와!,  와!,  의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
+const cheeringTicker = "장군! 적군이 도망갑니다. 적장 잡으러 돌격...,  와!,  와!,  의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
 const standbyTicker = "한반도 임진(1592)/정유(1597) 전쟁 시 척제공 장몽기 의병장께서 활동하신 전투장면을 배경으로 한 감란의병 게임 시뮬레이션입니다. (척제공 장몽기 의병역사자료관[블로그])";
 
 
@@ -447,6 +447,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

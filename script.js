@@ -1,4 +1,4 @@
-flet score = 0;
+let flet score = 0;
 let timeLeft = 30;
 let energy = 0;
 let gameOver = false;
@@ -447,6 +447,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

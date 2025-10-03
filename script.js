@@ -1,4 +1,4 @@
-let flet score = 0;
+let score = 0;
 let timeLeft = 30;
 let energy = 0;
 let gameOver = false;

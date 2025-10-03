@@ -51,7 +51,7 @@ function spawnAngledArrow() {
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
-  const startX = window.innerWidth / 2;
+  const startX = window.innerWidth / 4;
   const startY = 0;
 
   const angleDeg = Math.random() * 180;
@@ -447,6 +447,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

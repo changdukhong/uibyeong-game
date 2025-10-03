@@ -19,6 +19,10 @@ let lastClickTime = Date.now();
 let clickCount = 0;
 let arrowInterval;
 
+let currentBattleId = ''; // 전역 변수로 선언
+let battleId = '';
+
+
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const gaugeFill = document.getElementById('gauge-fill');
@@ -45,6 +49,28 @@ const standbyTicker = "한반도 임진(1592)/정유(1597) 전쟁 시 척제공 
 // const vy = 0.8;        // 초기 수직 속도 증가
 const speed = 1.2;       // 속도 줄이기
 const gravity = 0.002;   // 중력 증가
+
+function getCheeringTicker(battleId) {
+  const battleNames = {
+    battlefield01: "감란의병 전투 ",
+    battlefield02: "화원 전투(1592.04.) ",
+    battlefield03: "해안-화담 전투(1592.04.26.) ",
+    battlefield04: "경림 전투(1592.05.05) ",
+    battlefield05: "화원일대 전투(1592.08.19.) ",
+    battlefield06: "모량천-당현 전투(1592.08.25~26.) ",
+    battlefield07: "함창/당교 전투(1593.02.21.) ",
+    battlefield08: "당현-삼구 전투(1593.05.21.) ",
+    battlefield09: "창암 전투(1594.07.02.) ",
+    battlefield10: "화왕산성 전투(1597.08.18.) ",
+    battlefield11: "달성 전투(1597.08.29.) ",
+    battlefield12: "함창/당교 전투(1597.12.05.) "
+  };
+
+  const battleName = battleNames[battleId] || "감란의병 전투";
+  const cheeringTicker = "장군! 적군이 도망갑니다. 적장 잡으러 돌격..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요!";
+
+  return `${battleName}: ${cheeringTicker}`;
+}
 
 
 function spawnAngledArrow() {
@@ -177,7 +203,7 @@ function startGame() {
   const existingArrows = document.querySelectorAll('.arrow');
   existingArrows.forEach(arrow => arrow.remove());
 
-  tickerText.textContent = cheeringTicker;
+
   // speakTickerMessage(); // 응원 메시지를 음성으로 출력
 
 
@@ -214,6 +240,11 @@ function startGame() {
   }
 
   setRandomBattlefield(); // ✅ 배경 랜덤 설정
+
+  // tickerText.textContent = cheeringTicker;
+  // battleId 저장
+  battleId = currentBattleId;
+  tickerText.textContent = getCheeringTicker(battleId);
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
@@ -441,6 +472,9 @@ function setRandomBattlefield() {
   ];
   const randomIndex = Math.floor(Math.random() * backgrounds.length);
   battlefield.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
+
+  // battleId 저장
+  currentBattleId = `battlefield${randomIndex + 1}`;
 
 }
 

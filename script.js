@@ -78,9 +78,11 @@ function spawnAngledArrow() {
   const battlefield = document.getElementById('game-area');
   const rect = battlefield.getBoundingClientRect();
 
-  const battlefieldWidth = rect.width;
-  const battlefieldHeight = rect.height;
-
+  // const battlefieldWidth = rect.width;
+  // const battlefieldHeight = rect.height;
+  const battlefieldWidth = rect.left + rect.width / 2;
+  const battlefieldHeight = rect.top + rect.height / 2;
+  
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
@@ -517,6 +519,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

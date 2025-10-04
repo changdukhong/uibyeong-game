@@ -122,17 +122,22 @@ function spawnAngledArrow() {
       clearInterval(motion);
       // console.log('t:', t);      
 
-      // const screenHeight = window.innerHeight;
-      const screenHeight = 657;
+      const screenHeight = window.innerHeight;
+      const arrowY = screenHeight * 0.6; // 화면 하단 80% 지점
+
+      // const screenHeight = 657;
+      /// const screenHeight = 757;
+
       const isNearBottom = y >= screenHeight - 40;
       const isMidAngle = angle >= 45 && angle <= 135;
       
       if (isNearBottom && isMidAngle) {
         const stuckArrow = document.createElement('div');
         stuckArrow.classList.add('arrow');
-        stuckArrow.style.left = `${Math.abs(x)}px`;
+        // stuckArrow.style.left = `${Math.abs(x)}px`;
+        stuckArrow.style.left = `${x}px`;
         const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
-        stuckArrow.style.top = `${screenHeight - arrowHeight + offset - 150}px`;
+        stuckArrow.style.top = `${arrowY - arrowHeight + offset - 50}px`;
       
         // console.log('x:', x, 'screenHeight-arrowHeight+offset:', screenHeight-arrowHeight+offset);
       
@@ -140,6 +145,7 @@ function spawnAngledArrow() {
         const randomOffset = Math.floor(Math.random() * 61) - 30; // -30 ~ +30
         const finalAngle = angle + randomOffset;
         stuckArrow.style.transform = `rotate(${finalAngle}deg)`;
+
         stuckArrow.style.filter = 'brightness(1.5)'; // 🔆 밝기 증가
         stuckArrow.style.position = 'absolute';
         stuckArrow.style.zIndex = 101;
@@ -152,8 +158,8 @@ function spawnAngledArrow() {
         redDot.style.height = '10px';
         redDot.style.backgroundColor = 'red';
         redDot.style.borderRadius = '50%';
-        redDot.style.left = `${985 / 2}px`;       // x 좌표: 492.5px
-        redDot.style.top = `${657 - 150}px`;       // y 좌표: 617px
+        redDot.style.left = `${985 + 155}px`;       // x 좌표: 492.5px
+        redDot.style.top = `${657 + 100 - 00}px`;       // y 좌표: 617px
         redDot.style.zIndex = '999';
         document.getElementById('game-area').appendChild(redDot);
 
@@ -164,7 +170,6 @@ function spawnAngledArrow() {
 
   }, interval);
 }
-
 
 
 
@@ -504,6 +509,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

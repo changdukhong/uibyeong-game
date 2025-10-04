@@ -146,16 +146,16 @@ function spawnAngledArrow() {
 
         document.getElementById('game-area').appendChild(stuckArrow);
 
-        //const redDot = document.createElement('div');
-        //redDot.style.position = 'absolute';
-        //redDot.style.width = '10px';
-        //redDot.style.height = '10px';
-        //redDot.style.backgroundColor = 'red';
-        //redDot.style.borderRadius = '50%';
-        //redDot.style.left = `${985 / 2}px`;       // x 좌표: 492.5px
-        //redDot.style.top = `${657 - 70}px`;       // y 좌표: 617px
-        //redDot.style.zIndex = '999';
-        //document.getElementById('game-area').appendChild(redDot);
+        const redDot = document.createElement('div');
+        redDot.style.position = 'absolute';
+        redDot.style.width = '10px';
+        redDot.style.height = '10px';
+        redDot.style.backgroundColor = 'red';
+        redDot.style.borderRadius = '50%';
+        redDot.style.left = `${985 / 2}px`;       // x 좌표: 492.5px
+        redDot.style.top = `${657 - 150}px`;       // y 좌표: 617px
+        redDot.style.zIndex = '999';
+        document.getElementById('game-area').appendChild(redDot);
 
       }
 
@@ -504,6 +504,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

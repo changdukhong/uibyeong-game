@@ -75,6 +75,12 @@ function getCheeringTicker(battleId) {
 
 
 function spawnAngledArrow() {
+  const battlefield = document.getElementById('game-area');
+  const rect = battlefield.getBoundingClientRect();
+
+  const battlefieldWidth = rect.width;
+  const battlefieldHeight = rect.height;
+
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
@@ -122,24 +128,22 @@ function spawnAngledArrow() {
       clearInterval(motion);
       // console.log('t:', t);      
 
-      const screenHeight = window.innerHeight;
-      const arrowY = screenHeight * 0.6; // 화면 하단 80% 지점
+      // const screenHeight = window.innerHeight;
+      // const screenWidth = window.innerWidth;
+      console.log(`battlefield 크기: ${battlefieldWidth} × ${battlefieldHeight}`);
 
-      // const screenHeight = 657;
-      /// const screenHeight = 757;
+      const arrowY = battlefieldHeight * 0.95; // 화면 하단 80% 지점
 
-      const isNearBottom = y >= screenHeight - 40;
+      const isNearBottom = y >= battlefieldHeight - 40;
       const isMidAngle = angle >= 45 && angle <= 135;
       
       if (isNearBottom && isMidAngle) {
         const stuckArrow = document.createElement('div');
         stuckArrow.classList.add('arrow');
-        // stuckArrow.style.left = `${Math.abs(x)}px`;
-        stuckArrow.style.left = `${x}px`;
+        stuckArrow.style.left = `${Math.abs(x)}px`;
+        // stuckArrow.style.left = `${x}px`;
         const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
-        stuckArrow.style.top = `${arrowY - arrowHeight + offset - 50}px`;
-      
-        // console.log('x:', x, 'screenHeight-arrowHeight+offset:', screenHeight-arrowHeight+offset);
+        stuckArrow.style.top = `${arrowY - arrowHeight + offset}px`;
       
         // stuckArrow.style.transform = `rotate(${angle}deg)`;
         const randomOffset = Math.floor(Math.random() * 61) - 30; // -30 ~ +30
@@ -158,8 +162,8 @@ function spawnAngledArrow() {
         redDot.style.height = '10px';
         redDot.style.backgroundColor = 'red';
         redDot.style.borderRadius = '50%';
-        redDot.style.left = `${985 + 155}px`;       // x 좌표: 492.5px
-        redDot.style.top = `${657 + 100 - 00}px`;       // y 좌표: 617px
+        redDot.style.left = `${battlefieldWidth/2}px`;       
+        redDot.style.top = `${arrowY - arrowHeight + offset}px`;       
         redDot.style.zIndex = '999';
         document.getElementById('game-area').appendChild(redDot);
 
@@ -509,6 +513,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

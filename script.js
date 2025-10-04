@@ -124,7 +124,7 @@ function spawnAngledArrow() {
     // console.log('화살 각도:', angle); // 확인용
 
 
-    if (t >= duration) {
+    if (t >= duration-500) {
       clearInterval(motion);
       // console.log('t:', t);      
 
@@ -516,6 +516,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

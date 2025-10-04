@@ -137,7 +137,7 @@ function spawnAngledArrow() {
       const isNearBottom = y >= battlefieldHeight - 40;
       const isMidAngle = angle >= 45 && angle <= 135;
       
-      if (isNearBottom && isMidAngle) {
+      // if (isNearBottom && isMidAngle) {
         const stuckArrow = document.createElement('div');
         stuckArrow.classList.add('arrow');
         stuckArrow.style.left = `${Math.abs(x)}px`;
@@ -166,8 +166,7 @@ function spawnAngledArrow() {
         redDot.style.top = `${arrowY - arrowHeight + offset}px`;       
         redDot.style.zIndex = '999';
         document.getElementById('game-area').appendChild(redDot);
-
-      }
+      // }
 
       arrow.remove();
     }
@@ -513,6 +512,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

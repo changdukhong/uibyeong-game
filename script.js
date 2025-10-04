@@ -20,7 +20,7 @@ let clickCount = 0;
 let arrowInterval;
 
 let currentBattleId = ''; // 전역 변수로 선언
-// let battleId = '';
+let battlefield_rect;   // 테스트용 <<<<<<<<<
 
 
 const scoreDisplay = document.getElementById('score');
@@ -41,7 +41,7 @@ const characters = [document.getElementById('samurai'), document.getElementById(
 const effects = ['effect-bounce', 'effect-rotate', 'effect-scale'];
 
 const tickerText = document.getElementById('ticker-text');
-const cheeringTicker = "비유장군! 적군이 도망갑니다. 적장을 빨리 잡아라...,  와!,  와!,  의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
+const cheeringTicker = "비유장군! 적군이 도망갑니다. 적장 잡으러 돌격...,  와!,  와!,  의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요! ";
 const standbyTicker = "조선시대 임진(1592)/정유(1597) 전쟁 시 척제공 장몽기 의병장께서 활동하신 전투장소를 배경으로 한 감란의병 게임 시뮬레이션입니다. (척제공 장몽기 의병역사자료관[블로그])";
 
 
@@ -78,11 +78,9 @@ function spawnAngledArrow() {
   const battlefield = document.getElementById('game-area');
   const rect = battlefield.getBoundingClientRect();
 
-  // const battlefieldWidth = rect.width;
-  // const battlefieldHeight = rect.height;
-  const battlefieldWidth = rect.left + rect.width / 2;
-  const battlefieldHeight = rect.top + rect.height / 2;
-  
+  const battlefieldWidth = rect.width;      // battlefield 전시화면 크기
+  const battlefieldHeight = rect.height;    // battlefield 전시화면 크기
+
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
@@ -130,14 +128,14 @@ function spawnAngledArrow() {
       clearInterval(motion);
       // console.log('t:', t);      
 
-      // const screenHeight = window.innerHeight;
-      // const screenWidth = window.innerWidth;
+      // const screenHeight = window.innerHeight;   // 윈도우 전시된 화면 크기
+      // const screenWidth = window.innerWidth;     // 윈도우 전시된 화면 크기
       console.log(`battlefield 크기: ${battlefieldWidth} × ${battlefieldHeight}`);
 
-      const arrowY = battlefieldHeight * 0.80; // 화면 하단 80% 지점
+      const arrowY = battlefieldHeight * 0.90; // 화면 하단 80% 지점
       // 모바일 보정 (예: 높이가 700px 이하일 경우)
       if (battlefieldHeight < 700) {
-        arrowY = battlefieldHeight * 0.85; // 더 아래로 조정
+         arrowY = battlefieldHeight * 0.95; // 더 아래로 조정
       }
 
       const isNearBottom = y >= battlefieldHeight - 40;
@@ -169,10 +167,11 @@ function spawnAngledArrow() {
         redDot.style.backgroundColor = 'red';
         redDot.style.borderRadius = '50%';
         redDot.style.left = `${battlefieldWidth/2}px`;       
+        // redDot.style.top = `${arrowY - arrowHeight + offset}px`; 
         redDot.style.top = `${battlefieldHeight/2}px`;       
-        // redDot.style.top = `${arrowY - arrowHeight + offset}px`;  
         redDot.style.zIndex = '999';
         document.getElementById('game-area').appendChild(redDot);
+
       // }
 
       arrow.remove();
@@ -180,6 +179,7 @@ function spawnAngledArrow() {
 
   }, interval);
 }
+
 
 
 
@@ -492,6 +492,8 @@ function closePopup() {
 
 function setRandomBattlefield() {
   const battlefield = document.getElementById('game-area');
+  // const battlefield_rect = battlefield.getBoundingClientRect(); // test용
+
   const backgrounds = [
     'images/battlefield01.png',
     'images/battlefield02.png',
@@ -519,6 +521,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

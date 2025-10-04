@@ -20,7 +20,7 @@ let clickCount = 0;
 let arrowInterval;
 
 let currentBattleId = ''; // 전역 변수로 선언
-let battleId = '';
+// let battleId = '';
 
 
 const scoreDisplay = document.getElementById('score');
@@ -65,10 +65,11 @@ function getCheeringTicker(battleId) {
     battlefield11: "달성 전투(1597.08.29.) ",
     battlefield12: "함창/당교 전투(1597.12.05.) "
   };
-
+  
   const battleName = battleNames[battleId] || "감란의병 전투";
   const cheeringTicker = "장군! 적군이 도망갑니다. 적장 잡으러 돌격..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요!";
-
+  // console.log("battleId:", battleId);
+  // console.log("battleName:", battleName);
   return `${battleName}: ${cheeringTicker}`;
 }
 
@@ -77,7 +78,7 @@ function spawnAngledArrow() {
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
-  const startX = window.innerWidth / 4;
+  const startX = window.innerWidth / 2;
   const startY = 0;
 
   const angleDeg = Math.random() * 180;
@@ -116,25 +117,46 @@ function spawnAngledArrow() {
 
     // console.log('화살 각도:', angle); // 확인용
 
+
     if (t >= duration) {
       clearInterval(motion);
+      // console.log('t:', t);      
 
       // const screenHeight = window.innerHeight;
       const screenHeight = 657;
-      const isNearBottom = y >= screenHeight - 80;
+      const isNearBottom = y >= screenHeight - 40;
       const isMidAngle = angle >= 45 && angle <= 135;
-
+      
       if (isNearBottom && isMidAngle) {
         const stuckArrow = document.createElement('div');
         stuckArrow.classList.add('arrow');
-        stuckArrow.style.left = `${x}px`;
+        stuckArrow.style.left = `${Math.abs(x)}px`;
         const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
-        stuckArrow.style.top = `${screenHeight - arrowHeight + offset}px`;
-        stuckArrow.style.transform = `rotate(${angle}deg)`;
+        stuckArrow.style.top = `${screenHeight - arrowHeight + offset - 150}px`;
+      
+        // console.log('x:', x, 'screenHeight-arrowHeight+offset:', screenHeight-arrowHeight+offset);
+      
+        // stuckArrow.style.transform = `rotate(${angle}deg)`;
+        const randomOffset = Math.floor(Math.random() * 61) - 30; // -30 ~ +30
+        const finalAngle = angle + randomOffset;
+        stuckArrow.style.transform = `rotate(${finalAngle}deg)`;
+        stuckArrow.style.filter = 'brightness(1.5)'; // 🔆 밝기 증가
         stuckArrow.style.position = 'absolute';
         stuckArrow.style.zIndex = 101;
 
         document.getElementById('game-area').appendChild(stuckArrow);
+
+        //const redDot = document.createElement('div');
+        //redDot.style.position = 'absolute';
+        //redDot.style.width = '10px';
+        //redDot.style.height = '10px';
+        //redDot.style.backgroundColor = 'red';
+        //redDot.style.borderRadius = '50%';
+        //redDot.style.left = `${985 / 2}px`;       // x 좌표: 492.5px
+        //redDot.style.top = `${657 - 70}px`;       // y 좌표: 617px
+        //redDot.style.zIndex = '999';
+        //document.getElementById('game-area').appendChild(redDot);
+
       }
 
       arrow.remove();
@@ -142,6 +164,8 @@ function spawnAngledArrow() {
 
   }, interval);
 }
+
+
 
 
 function speakTickerMessage() {
@@ -241,10 +265,7 @@ function startGame() {
 
   setRandomBattlefield(); // ✅ 배경 랜덤 설정
 
-  // tickerText.textContent = cheeringTicker;
-  // battleId 저장
-  battleId = currentBattleId;
-  tickerText.textContent = getCheeringTicker(battleId);
+  tickerText.textContent = getCheeringTicker(currentBattleId);
 
   adjustCharacterBottom(); // ✅ 위치 조정
 
@@ -258,7 +279,7 @@ function startGame() {
   energyDecayInterval = setInterval(decayEnergy, 100);
 
   // 🔥 포물선 화살 반복 생성 시작
-  arrowInterval = setInterval(spawnAngledArrow, 1500); // 포물선 화살 반복
+  arrowInterval = setInterval(spawnAngledArrow, 1000); // 포물선 화살 반복
 
 
 }
@@ -473,8 +494,10 @@ function setRandomBattlefield() {
   const randomIndex = Math.floor(Math.random() * backgrounds.length);
   battlefield.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
 
-  // battleId 저장
-  currentBattleId = `battlefield${randomIndex + 1}`;
+  const paddedNumber = String(randomIndex + 1).padStart(2, '0');
+  currentBattleId = `battlefield${paddedNumber}`;
+
+  // console.log("currentBattleId:", currentBattleId);
 
 }
 

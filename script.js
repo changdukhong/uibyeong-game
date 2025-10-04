@@ -169,7 +169,7 @@ function spawnAngledArrow() {
         redDot.style.left = `${battlefieldWidth/2}px`;       
         redDot.style.top = `${battlefieldHeight/2}px`;       
         // redDot.style.top = `${arrowY - arrowHeight + offset}px`;  
-      redDot.style.zIndex = '999';
+        redDot.style.zIndex = '999';
         document.getElementById('game-area').appendChild(redDot);
       // }
 
@@ -517,6 +517,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

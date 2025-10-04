@@ -132,7 +132,7 @@ function spawnAngledArrow() {
       // const screenWidth = window.innerWidth;
       console.log(`battlefield 크기: ${battlefieldWidth} × ${battlefieldHeight}`);
 
-      const arrowY = battlefieldHeight * 0.85; // 화면 하단 80% 지점
+      const arrowY = battlefieldHeight * 0.80; // 화면 하단 80% 지점
 
       const isNearBottom = y >= battlefieldHeight - 40;
       const isMidAngle = angle >= 45 && angle <= 135;
@@ -512,6 +512,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

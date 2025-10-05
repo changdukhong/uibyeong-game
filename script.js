@@ -78,8 +78,8 @@ function spawnAngledArrow() {
   const battlefield = document.getElementById('game-area');
   const rect = battlefield.getBoundingClientRect();
 
-  const battlefieldWidth = rect.width;      // battlefield 전시화면 크기
-  const battlefieldHeight = rect.height;    // battlefield 전시화면 크기
+  const battlefieldWidth = rect.width * 0.1;      // battlefield 전시화면 크기
+  const battlefieldHeight = rect.height * 0.1;    // battlefield 전시화면 크기
 
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
@@ -523,6 +523,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

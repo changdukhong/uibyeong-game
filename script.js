@@ -160,19 +160,19 @@ function spawnAngledArrow() {
 
         document.getElementById('game-area').appendChild(stuckArrow);
 
-        const redDot = document.createElement('div');
-        redDot.style.position = 'absolute';
-        redDot.style.width = '10px';
-        redDot.style.height = '10px';
-        redDot.style.backgroundColor = 'red';
-        redDot.style.borderRadius = '50%';
+        //const redDot = document.createElement('div');
+        //redDot.style.position = 'absolute';
+        //redDot.style.width = '10px';
+        //redDot.style.height = '10px';
+        //redDot.style.backgroundColor = 'red';
+        //redDot.style.borderRadius = '50%';
         // redDot.style.top = `${arrowY - arrowHeight + offset}px`; 
         // redDot.style.left = `${battlefieldWidth/2}px`;       
         // redDot.style.top = `${battlefieldHeight/2}px`;     
         //redDot.style.left = `${100}px`;       
         //redDot.style.top = `${100}px`;
-        redDot.style.zIndex = '999';
-        document.getElementById('game-area').appendChild(redDot);
+        //redDot.style.zIndex = '999';
+        //document.getElementById('game-area').appendChild(redDot);
 
       // }
 
@@ -523,6 +523,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

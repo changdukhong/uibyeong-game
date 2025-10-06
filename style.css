@@ -260,6 +260,14 @@ html, body {
   z-index: 10;
 }
 
+/* 모바일 화면 대응 */
+@media screen and (max-width: 768px) {
+  #eagle {
+    width: 50px; /* 모바일에서 더 작게 */
+    top: 8%;     /* 더 위쪽으로 조정 */
+  }
+}
+
 @keyframes circleFlight {
   0%   { transform: rotate(0deg) translateX(100px) rotate(0deg); }
   100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
@@ -330,6 +338,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -249,6 +249,25 @@ html, body {
   overflow: hidden;
 }
 
+#eagle {
+  position: absolute;
+  width: 65px;
+  height: auto;
+  top: 15%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  animation: circleFlight 8s linear infinite;
+  z-index: 10;
+}
+
+@keyframes circleFlight {
+  0%   { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+
+
+
 /* ✅ 기본 아바타 크기 */
 #samurai, #uibyeong {
   position: absolute;
@@ -311,6 +330,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -263,8 +263,8 @@ html, body {
 /* 모바일 화면 대응 */
 @media screen and (max-width: 768px) {
   #eagle {
-    width: 50px; /* 모바일에서 더 작게 */
-    top: 8%;     /* 더 위쪽으로 조정 */
+    width: 30px; /* 모바일에서 더 작게 */
+    top: 10%;     /* 더 위쪽으로 조정 */
   }
 }
 
@@ -338,6 +338,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

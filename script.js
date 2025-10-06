@@ -6,7 +6,7 @@ let gameOver = false;
 let samuraiPosition = 75;
 let uibyeongPosition = 95;
 
-const baseSpeed = 0.2;
+const baseSpeed = 0.13;
 let uibyeongSpeed = baseSpeed;
 
 let timerInterval;
@@ -71,6 +71,22 @@ function getCheeringTicker(battleId) {
   // console.log("battleId:", battleId);
   // console.log("battleName:", battleName);
   return `${battleName}: ${cheeringTicker}`;
+}
+
+
+function showPortrait() {
+  const container = document.getElementById('portrait-container');
+  container.style.display = 'block';
+
+  setTimeout(() => {
+    container.style.display = 'none';
+  }, 3000); // 3초 후 자동 제거
+}
+
+
+function showEagle() {
+  const eagle = document.getElementById('eagle');
+  eagle.style.display = 'block'; // 독수리 표시
 }
 
 
@@ -166,11 +182,9 @@ function spawnAngledArrow() {
         //redDot.style.height = '10px';
         //redDot.style.backgroundColor = 'red';
         //redDot.style.borderRadius = '50%';
+        //redDot.style.left = `${battlefieldWidth/2}px`;       
         // redDot.style.top = `${arrowY - arrowHeight + offset}px`; 
-        // redDot.style.left = `${battlefieldWidth/2}px`;       
-        // redDot.style.top = `${battlefieldHeight/2}px`;     
-        //redDot.style.left = `${100}px`;       
-        //redDot.style.top = `${100}px`;
+        //redDot.style.top = `${battlefieldHeight/2}px`;       
         //redDot.style.zIndex = '999';
         //document.getElementById('game-area').appendChild(redDot);
 
@@ -246,7 +260,9 @@ function startGame() {
 
 
   // speakTickerMessage(); // 응원 메시지를 음성으로 출력
-
+  // eagle excursion in the sky
+  const eagle = document.getElementById('eagle');
+  eagle.style.display = 'none'; // 게임 시작 시 독수리 제거
 
   
   score = 0;
@@ -411,7 +427,6 @@ function endGame(message) {
 
   
   clearInterval(arrowInterval); // 게임 종료 시 반복 중단
-
   
   const messageBox = document.getElementById('messageBox');
   messageBox.textContent = ''; // ✅ 메시지 제거
@@ -425,7 +440,7 @@ function endGame(message) {
     samurai.classList.remove('charge');
   }, 2000);
 
-
+  showEagle(); // 대기 상태에서 독수리 등장
   
   samurai.style.left = `75%`;
   uibyeong.style.left = `95%`;

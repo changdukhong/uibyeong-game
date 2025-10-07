@@ -102,10 +102,6 @@ html, body {
 }
 
 
-@keyframes arrowRain {
-  0%   { top: 0; opacity: 1; }
-  100% { top: 100vh; opacity: 0.3; }
-}
 
 .arrow {
   position: absolute;
@@ -182,24 +178,6 @@ html, body {
   z-index: 2;
 }
 
-/*
-#oni-supporter {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
-  height: 60px;
-  z-index: 1000;
-  animation: bounce 1s infinite;
-} 
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}     */
-
-/* ✅ 중앙 기준 좌우 배치 
-#supporter1 { left: calc(50% - 120px); background-image: url('images/supporter1.png'); }  */
 
 #supporter1 {
   top: 15px !important;
@@ -323,14 +301,6 @@ button {
   }
 
   
-  /* 
-@media screen and (max-width: 768px) {
-  #oni-supporter {
-    width: 30px;
-    height: 30px;
-  }
-}  */
-
   
   /* ✅ supporter 위치 보정 */
   #supporter1 { left: calc(50% - 60px); }
@@ -338,6 +308,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

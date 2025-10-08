@@ -147,7 +147,7 @@ function spawnAngledArrow() {
     if (t >= duration - 500) {
       clearInterval(motion);
 
-      const arrowYRatio = battlefieldHeight < 700 ? 0.95 : 0.90;
+      const arrowYRatio = battlefieldHeight < 700 ? 0.85 : 0.90;
       // if (isMobileDevice()) {
       //   arrowYRatio -= 0.05; // 예: 0.90 → 0.85
       // }
@@ -527,6 +527,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

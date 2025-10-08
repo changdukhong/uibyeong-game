@@ -225,6 +225,7 @@ html, body {
   background-repeat: repeat-x;
   background-size: cover;
   overflow: hidden;
+  min-height: 200px; /* 모바일에서 최소 높이 확보 */
 }
 
 #eagle {
@@ -322,6 +323,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

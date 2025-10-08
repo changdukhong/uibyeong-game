@@ -94,13 +94,14 @@ function spawnAngledArrow() {
   const battlefield = document.getElementById('game-area');
   const rect = battlefield.getBoundingClientRect();
 
-  const battlefieldWidth = rect.width;      // battlefield 전시화면 크기
-  const battlefieldHeight = rect.height;    // battlefield 전시화면 크기
+  const battlefieldWidth = rect.width;
+  const battlefieldHeight = rect.height;
 
   const arrow = document.createElement('div');
   arrow.classList.add('arrow');
 
-  const startX = window.innerWidth / 2;
+  // 시작 위치: battlefield 기준 가운데
+  const startX = battlefieldWidth / 2;
   const startY = 0;
 
   const angleDeg = Math.random() * 180;
@@ -114,102 +115,73 @@ function spawnAngledArrow() {
 
   const initialAngle = Math.atan2(vy, vx) * (180 / Math.PI);
   arrow.style.transform = `rotate(${initialAngle}deg)`;
-  arrow.style.left = `${startX}px`;
-  arrow.style.top = `${startY}px`;
 
-  document.getElementById('game-area').appendChild(arrow);
+  // 초기 위치: % 기준으로 배치
+  const startXRatio = startX / battlefieldWidth;
+  const startYRatio = startY / battlefieldHeight;
+  arrow.style.left = `${startXRatio * 100}%`;
+  arrow.style.top = `${startYRatio * 100}%`;
+  arrow.style.position = 'absolute';
+  arrow.style.transform += ' translate(-50%, -50%)';
+
+  battlefield.appendChild(arrow);
 
   const startTime = Date.now();
   const duration = 3000;
   const interval = 20;
-
-  // 💾 화살 높이 저장
-  const arrowHeight = arrow.offsetHeight;
 
   const motion = setInterval(() => {
     const t = Date.now() - startTime;
     const x = startX + vx * t;
     const y = startY + vy * t + gravity * t * t;
 
-    arrow.style.left = `${x}px`;
-    arrow.style.top = `${y}px`;
+    const xRatio = x / battlefieldWidth;
+    const yRatio = y / battlefieldHeight;
+
+    arrow.style.left = `${xRatio * 100}%`;
+    arrow.style.top = `${yRatio * 100}%`;
 
     const angle = Math.atan2(vy + gravity * t * 2, vx) * (180 / Math.PI);
-    arrow.style.transform = `rotate(${angle}deg)`;
+    arrow.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
 
-    // console.log('화살 각도:', angle); // 확인용
-
-
-    if (t >= duration-500) {
+    if (t >= duration - 500) {
       clearInterval(motion);
-      // console.log('t:', t);      
 
-      // const screenHeight = window.innerHeight;   // 윈도우 전시된 화면 크기
-      // const screenWidth = window.innerWidth;     // 윈도우 전시된 화면 크기
-      console.log(`battlefield 크기: ${battlefieldWidth} × ${battlefieldHeight}`);
+      const arrowYRatio = battlefieldHeight < 700 ? 0.95 : 0.90;
+      const finalYRatio = arrowYRatio;
 
-      let arrowY = battlefieldHeight * 0.90; // 화면 하단 80% 지점
-      // 모바일 보정 (예: 높이가 700px 이하일 경우)
-      if (battlefieldHeight < 700) {
-         arrowY = battlefieldHeight * 0.85; // 더 아래로 조정
-      }
+      const stuckArrow = document.createElement('div');
+      stuckArrow.classList.add('arrow');
 
-      const isNearBottom = y >= battlefieldHeight - 40;
-      const isMidAngle = angle >= 45 && angle <= 135;
-      
-      // if (isNearBottom && isMidAngle) {
-        const stuckArrow = document.createElement('div');
-        stuckArrow.classList.add('arrow');
-        stuckArrow.style.left = `${Math.abs(x)}px`;
-        // stuckArrow.style.left = `${x}px`;
-        const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
-        stuckArrow.style.top = `${arrowY - arrowHeight + offset}px`;
-      
-        // stuckArrow.style.transform = `rotate(${angle}deg)`;
-        const randomOffset = Math.floor(Math.random() * 61) - 30; // -30 ~ +30
-        const finalAngle = angle + randomOffset;
-        stuckArrow.style.transform = `rotate(${finalAngle}deg)`;
+      const offset = Math.floor(Math.random() * 60) - 30; // -30 ~ +29
+      const finalAngle = angle + Math.floor(Math.random() * 61) - 30;
 
-        stuckArrow.style.filter = 'brightness(1.5)'; // 🔆 밝기 증가
-        stuckArrow.style.position = 'absolute';
-        stuckArrow.style.zIndex = 101;
+      stuckArrow.style.position = 'absolute';
+      stuckArrow.style.left = `${xRatio * 100}%`;
+      stuckArrow.style.top = `${finalYRatio * 100}%`;
+      stuckArrow.style.transform = `translate(-50%, -50%) rotate(${finalAngle}deg)`;
+      stuckArrow.style.zIndex = 101;
+      stuckArrow.style.filter = 'brightness(1.5)';
 
-        document.getElementById('game-area').appendChild(stuckArrow);
+      battlefield.appendChild(stuckArrow);
 
-        // const redDot = document.createElement('div');
-        //redDot.style.position = 'absolute';
-        //redDot.style.width = '10px';
-        //redDot.style.height = '10px';
-        //redDot.style.backgroundColor = 'red';
-        //redDot.style.borderRadius = '50%';
-        //redDot.style.left = '50%';
-        //redDot.style.top = '50%';
-        //redDot.style.transform = 'translate(-50%, -50%)';
-        //redDot.style.zIndex = '999';
-        //document.getElementById('game-area').appendChild(redDot);
-
-      //const battlefield = document.getElementById('game-area');
-      //const redDot = document.createElement('div');
-      //redDot.className = 'red-dot';
-      //redDot.style.position = 'absolute';
-      //redDot.style.width = '10px';
-      //redDot.style.height = '10px';
-      //redDot.style.backgroundColor = 'red';
-      //redDot.style.borderRadius = '50%';
-      //redDot.style.left = '50%';
-      //redDot.style.top = '50%';
-      //redDot.style.transform = 'translate(-50%, -50%)';
-      //redDot.style.zIndex = '999';
-      //battlefield.appendChild(redDot);
-      
-      // }
+      // 중앙 붉은 점 (디버깅용)
+      const redDot = document.createElement('div');
+      redDot.style.position = 'absolute';
+      redDot.style.width = '10px';
+      redDot.style.height = '10px';
+      redDot.style.backgroundColor = 'red';
+      redDot.style.borderRadius = '50%';
+      redDot.style.left = '50%';
+      redDot.style.top = '50%';
+      redDot.style.transform = 'translate(-50%, -50%)';
+      redDot.style.zIndex = '999';
+      battlefield.appendChild(redDot);
 
       arrow.remove();
     }
-
   }, interval);
 }
-
 
 
 
@@ -552,6 +524,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

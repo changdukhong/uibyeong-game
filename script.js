@@ -148,6 +148,9 @@ function spawnAngledArrow() {
       clearInterval(motion);
 
       const arrowYRatio = battlefieldHeight < 700 ? 0.95 : 0.90;
+      if (isMobileDevice()) {
+        arrowYRatio -= 0.05; // 예: 0.90 → 0.85
+      }
       const finalYRatio = arrowYRatio;
 
       const stuckArrow = document.createElement('div');
@@ -524,6 +527,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

@@ -151,7 +151,7 @@ function spawnAngledArrow() {
       let arrowY = battlefieldHeight * 0.90; // 화면 하단 80% 지점
       // 모바일 보정 (예: 높이가 700px 이하일 경우)
       if (battlefieldHeight < 700) {
-         arrowY = battlefieldHeight * 0.95; // 더 아래로 조정
+         arrowY = battlefieldHeight * 0.85; // 더 아래로 조정
       }
 
       const isNearBottom = y >= battlefieldHeight - 40;
@@ -552,6 +552,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

@@ -187,21 +187,21 @@ function spawnAngledArrow() {
         //redDot.style.transform = 'translate(-50%, -50%)';
         //redDot.style.zIndex = '999';
         //document.getElementById('game-area').appendChild(redDot);
-const battlefield = document.getElementById('game-area');
-const redDot = document.createElement('div');
-redDot.className = 'red-dot';
 
-redDot.style.position = 'absolute';
-redDot.style.width = '10px';
-redDot.style.height = '10px';
-redDot.style.backgroundColor = 'red';
-redDot.style.borderRadius = '50%';
-redDot.style.left = '50%';
-redDot.style.top = '50%';
-redDot.style.transform = 'translate(-50%, -50%)';
-redDot.style.zIndex = '999';
-
-battlefield.appendChild(redDot);
+      //const battlefield = document.getElementById('game-area');
+      //const redDot = document.createElement('div');
+      //redDot.className = 'red-dot';
+      //redDot.style.position = 'absolute';
+      //redDot.style.width = '10px';
+      //redDot.style.height = '10px';
+      //redDot.style.backgroundColor = 'red';
+      //redDot.style.borderRadius = '50%';
+      //redDot.style.left = '50%';
+      //redDot.style.top = '50%';
+      //redDot.style.transform = 'translate(-50%, -50%)';
+      //redDot.style.zIndex = '999';
+      //battlefield.appendChild(redDot);
+      
       // }
 
       arrow.remove();
@@ -552,6 +552,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

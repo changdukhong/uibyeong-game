@@ -227,36 +227,6 @@ html, body {
   overflow: hidden;
   min-height: 200px; /* 모바일에서 최소 높이 확보 */
 
- /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */ 
- #portrait-container {
-  position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 8px 12px;
-  border-radius: 10px;
-}
-
-#portrait {
-  width: auto;
-  max-width: 80px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
- #portrait-text {
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.4;
- }
-  
 }
 
 
@@ -356,6 +326,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

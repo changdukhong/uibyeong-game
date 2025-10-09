@@ -257,12 +257,6 @@ html, body {
   line-height: 1.4;
  }
   
- /* ✅ 모바일에서는 텍스트 숨김 */
- @media (max-width: 480px) {
-   #portrait-text {
-   display: none;
- }
-
 }
 
 
@@ -362,6 +356,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

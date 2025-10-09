@@ -74,6 +74,23 @@ function getCheeringTicker(battleId) {
 }
 
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function showCommanderPortrait() {
+  const portrait = document.getElementById('portrait-container');
+  if (!portrait) {
+    console.warn('portrait-container not found');
+    return;
+  }
+  portrait.style.display = 'block'; // 게임 종료 시 표시
+}
+
+function hideCommanderPortrait() {
+  const portrait = document.getElementById('portrait-container');
+  if (!portrait) return;
+  portrait.style.display = 'none'; // 게임 시작 시 숨김
+}
+
+
 function showEagle() {
   const eagle = document.getElementById('eagle');
   eagle.style.display = 'block'; // 독수리 표시
@@ -243,6 +260,8 @@ function startGame() {
   const eagle = document.getElementById('eagle');
   eagle.style.display = 'none'; // 게임 시작 시 독수리 제거
 
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  hideCommanderPortrait(); // ✅ 초상화 숨김
   
   score = 0;
   clickCount = 0;
@@ -421,6 +440,8 @@ function endGame(message) {
 
   showEagle(); // 대기 상태에서 독수리 등장
 
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  showCommanderPortrait(); // ✅ 초상화 표시  
   
   samurai.style.left = `75%`;
   uibyeong.style.left = `95%`;
@@ -518,6 +539,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

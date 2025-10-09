@@ -261,7 +261,6 @@ html, body {
   #portrait-text {
     display: none;
   }
-}
 
 }
 
@@ -362,6 +361,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

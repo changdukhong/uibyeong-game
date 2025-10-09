@@ -230,7 +230,7 @@ html, body {
  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */ 
  #portrait-container {
   position: absolute;
-  top: calc(100% + 15px);
+  top: calc(100% + 20px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -362,6 +362,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

@@ -176,17 +176,17 @@ function spawnAngledArrow() {
       battlefield.appendChild(stuckArrow);
 
       // 중앙 붉은 점 (디버깅용)
-      const redDot = document.createElement('div');
-      redDot.style.position = 'absolute';
-      redDot.style.width = '10px';
-      redDot.style.height = '10px';
-      redDot.style.backgroundColor = 'red';
-      redDot.style.borderRadius = '50%';
-      redDot.style.left = '50%';
-      redDot.style.top = '50%';
-      redDot.style.transform = 'translate(-50%, -50%)';
-      redDot.style.zIndex = '999';
-      battlefield.appendChild(redDot);
+      //const redDot = document.createElement('div');
+      //redDot.style.position = 'absolute';
+      //redDot.style.width = '10px';
+      //redDot.style.height = '10px';
+      //redDot.style.backgroundColor = 'red';
+      //redDot.style.borderRadius = '50%';
+      //redDot.style.left = '50%';
+      //redDot.style.top = '50%';
+      //redDot.style.transform = 'translate(-50%, -50%)';
+      //redDot.style.zIndex = '999';
+      //battlefield.appendChild(redDot);
 
       arrow.remove();
     }
@@ -539,6 +539,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

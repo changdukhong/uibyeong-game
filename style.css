@@ -255,8 +255,15 @@ html, body {
   font-size: 14px;
   color: #fff;
   line-height: 1.4;
+  transform: none;
  }
   
+}
+
+/* ✅ 이미지에만 flip 효과 적용 */
+#portrait-image.flip-horizontal {
+  transform: scaleX(-1);
+  transition: none;   /*transform 0.5s ease; */
 }
 
 /* styles.css */
@@ -368,6 +375,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

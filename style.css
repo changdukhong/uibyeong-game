@@ -337,6 +337,12 @@ button {
   box-sizing: border-box;
 }
 
+::selection {
+  background: transparent; /* ✅ 선택 시 배경색 제거 */
+  color: inherit;          /* ✅ 글자색 유지 */
+}
+
+
 #restartBtn {
   display: none;
 }
@@ -361,6 +367,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

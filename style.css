@@ -327,7 +327,7 @@ html, body {
 /* ✅ 버튼 스타일 유지 */
 button {
   margin: 1em;
-  padding: 1em 2em;
+  padding: 0.6em 1.6em;
   font-size: 1em;
   background: #f90;
   border: none;
@@ -367,6 +367,7 @@ button {
   #supporter3 { left: calc(50% + 0px); }
   #supporter4 { left: calc(50% + 30px); }
 }
+
 
 
 

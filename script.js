@@ -76,12 +76,20 @@ function getCheeringTicker(battleId) {
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 function showCommanderPortrait() {
-  const portrait = document.getElementById('portrait-container');
-  if (!portrait) {
-    console.warn('portrait-container not found');
+  const portraitImage = document.getElementById('portrait-image');
+  const portraitContainer = document.getElementById('portrait-container');
+
+  if (!portraitImage || !portraitContainer) {
+    console.warn('portrait elements not found');
     return;
   }
-  portrait.style.display = 'block'; // 게임 종료 시 표시
+
+  portraitContainer.style.display = 'block';
+
+  // ✅ 이미지에만 flip 적용
+  setInterval(() => {
+    portraitImage.classList.toggle('flip-horizontal');
+  }, 3000);
 }
 
 function hideCommanderPortrait() {
@@ -539,6 +547,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

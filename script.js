@@ -21,7 +21,7 @@ let arrowInterval;
 
 let currentBattleId = ''; // 전역 변수로 선언
 let battlefield_rect;   // 테스트용 <<<<<<<<<
-
+let flipIntervalId = null;
 
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
@@ -86,10 +86,15 @@ function showCommanderPortrait() {
 
   portraitContainer.style.display = 'block';
 
-  // ✅ 이미지에만 flip 적용
-  setInterval(() => {
+  // ✅ 기존 flip 타이머 제거
+  if (flipIntervalId !== null) {
+    clearInterval(flipIntervalId);
+  }
+
+  // ✅ 새 flip 타이머 설정
+  flipIntervalId = setInterval(() => {
     portraitImage.classList.toggle('flip-horizontal');
-  }, 3000);
+  }, 7000);
 }
 
 function hideCommanderPortrait() {
@@ -547,6 +552,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

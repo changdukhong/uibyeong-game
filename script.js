@@ -52,7 +52,7 @@ const gravity = 0.002;   // 중력 증가
 
 function getCheeringTicker(battleId) {
   const battleNames = {
-    battlefield01: "감란의병 전투 : 임진년(1592) ~ 정유년(1597)까지 척제공 장몽기 의병장이 감란일기를 통하여 경상도 지역에서 왜적에 대항하여 의병 항쟁을 벌이신 감란의병 전투 일기이다. ",
+    battlefield01: "감란의병 전투 : 임진년(1592) ~ 정유년(1597)까지 척제공 장몽기 의병장께서 와룡산에 '비유와룡진'을 세우고 경상도 지역에서 왜적에 대항하여 의병 항쟁을 벌이신 감란의병 전투 일기이다. ",
     battlefield02: "화원 전투(1592.04.) : 와룡산 아래 병영을 세우고 화원 길 옆에 병사를 매복시켜 왜군을 수차례 공격하여 승리로 이끌고 전세를 반전시킨 전투이다.  ",
     battlefield03: "해안-화담 전투(1592.04.26.) : 왜군이 해안을 점령했다는 급보에 단번에 내달아 적군을 격파하고 화담까지 추격, 적군을 담수에 빠뜨려 익사시킨 전투이다. ",
     battlefield04: "경림 전투(1592.05.05) : 왜군이 경림 현성에 양식을 약탈하자 최동보와 함께 병사들을 부락과 삼림에 은폐시키고, 화공으로 적을 혼란에 빠뜨려 크게 이긴 전투이다. ",
@@ -554,6 +554,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 

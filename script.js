@@ -68,7 +68,7 @@ function getCheeringTicker(battleId) {
   
   const battleName = battleNames[battleId] || "감란의병 전투";
   //const cheeringTicker = "비유장군! 적군이 도망갑니다. 적장을 빨리 잡아라..., 와!, 와!, 의병장 할아버지, 힘내세요! 왜장(사무라이)을 반드시 잡아요!";
-  const cheeringTicker = "[감란일기 중에서... 발췌]";
+  const cheeringTicker = "[감란일기 중에서...]";
   return `${battleName} ${cheeringTicker}`;
   // console.log("battleId:", battleId);
   // console.log("battleName:", battleName);
@@ -554,6 +554,7 @@ function setRandomBattlefield() {
 window.addEventListener('resize', adjustCharacterBottom);
 
 document.addEventListener('DOMContentLoaded', startGame);
+
 
 
 
